@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>This Portfolio — Case Study · Estefanía Reyes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F4F2;--ink:#1C1B19;--muted:#8A8880;--faint:#E8E6E2;
+  --white:#FFFFFF;--accent:#C4533A;--soft:rgba(196,83,58,.06);
+  --serif:"Instrument Serif",Georgia,serif;--sans:"Geist",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6;overflow-x:hidden;max-width:1280px;margin:0 auto}
+
+/* ─── LANG ─── */
+[data-es]{display:none}
+body.es [data-en]{display:none}
+body.es [data-es]{display:block}
+span[data-es]{display:none}
+body.es span[data-en]{display:none}
+body.es span[data-es]{display:inline}
+
+/* ─── NAV ─── */
+nav{position:sticky;top:0;background:rgba(245,244,242,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);padding:0 clamp(20px,4vw,56px);height:56px;display:flex;align-items:center;justify-content:space-between;z-index:100}
+.nav-back{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}.nav-back:hover{color:var(--ink)}
+.nav-logo{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:20px}
+.lang-sep{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--faint)}
+.lang-toggle{font-size:12px;color:var(--muted);cursor:pointer;border:none;background:none;font-family:var(--sans);padding:0;letter-spacing:.05em;transition:color .2s}.lang-toggle:hover{color:var(--ink)}
+
+/* ─── HERO ─── */
+.cs-hero{padding:80px clamp(28px,5vw,80px) 64px;border-bottom:1px solid var(--faint);position:relative;overflow:hidden}
+.hero-blob{position:absolute;width:500px;height:400px;background:rgba(196,83,58,.05);border-radius:50%;filter:blur(80px);top:-60px;right:-40px;pointer-events:none}
+.cs-tag{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.cs-tag::after{content:'';width:32px;height:1px;background:var(--accent);opacity:.4}
+.cs-title{font-family:var(--serif);font-size:clamp(44px,6vw,76px);line-height:1.0;letter-spacing:-.025em;margin-bottom:20px}
+.cs-title em{font-style:italic;color:var(--accent)}
+.cs-lead{font-size:17px;font-weight:300;color:var(--muted);max-width:600px;line-height:1.8;margin-bottom:48px}
+.cs-lead strong{color:var(--ink);font-weight:400}
+.meta-row{display:flex;border:1px solid var(--faint);border-radius:12px;overflow:hidden;max-width:760px;background:var(--white)}
+.mi{flex:1;padding:16px 20px;border-right:1px solid var(--faint)}.mi:last-child{border-right:none}
+.ml{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.mv{font-size:13px;color:var(--ink);line-height:1.5}
+
+/* ─── SECTIONS ─── */
+.sec{padding:80px clamp(28px,5vw,80px);border-bottom:1px solid var(--faint)}
+.phase{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.stitle{font-family:var(--serif);font-size:clamp(26px,3.5vw,42px);line-height:1.1;letter-spacing:-.02em;margin-bottom:24px}
+.stitle em{font-style:italic;color:var(--accent)}
+.body{font-size:15px;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:18px;max-width:660px}
+.body strong{color:var(--ink);font-weight:400}
+
+/* ─── DECISION CARD ─── */
+.decision{background:var(--white);border:1px solid var(--faint);border-radius:16px;padding:32px 36px;margin:24px 0;position:relative;overflow:hidden}
+.decision::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--accent)}
+.decision-q{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.decision-a{font-size:15px;font-weight:300;color:var(--muted);line-height:1.8}
+.decision-a strong{color:var(--ink);font-weight:400}
+
+/* ─── QUOTE ─── */
+.quote{border-left:2px solid var(--accent);padding:20px 28px;margin:32px 0;background:var(--soft);border-radius:0 12px 12px 0}
+.quote p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);line-height:1.6}
+.quote cite{display:block;margin-top:10px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-style:normal}
+
+/* ─── STACK GRID ─── */
+.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+.stack-card{background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:20px 18px;text-align:center}
+.stack-icon{font-size:24px;margin-bottom:8px}
+.stack-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px}
+.stack-desc{font-size:11px;font-weight:300;color:var(--muted);line-height:1.5}
+
+/* ─── SYSTEM DIAGRAM ─── */
+.system{background:var(--ink);border-radius:16px;padding:40px;margin:32px 0}
+.system-title{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:24px}
+.system-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.system-row:last-child{margin-bottom:0}
+.sys-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 16px;font-size:12px;font-weight:400;color:white;white-space:nowrap}
+.sys-box.accent{background:rgba(196,83,58,.25);border-color:rgba(196,83,58,.4);color:#F0A898}
+.sys-arrow{color:rgba(255,255,255,.25);font-size:14px;flex-shrink:0}
+.sys-label{font-size:11px;color:rgba(255,255,255,.3);font-weight:300}
+
+/* ─── TIMELINE ─── */
+.timeline{display:flex;flex-direction:column;gap:0;margin:28px 0;position:relative}
+.timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:1px;background:var(--faint)}
+.tl-item{display:flex;gap:24px;padding-bottom:28px;position:relative}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{width:33px;height:33px;border-radius:50%;background:var(--white);border:1px solid var(--faint);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--accent);flex-shrink:0;position:relative;z-index:1}
+.tl-dot.done{background:var(--accent);border-color:var(--accent);color:white}
+.tl-dot.wip{background:#FEF3F0;border-color:var(--accent);color:var(--accent)}
+.tl-content{padding-top:5px}
+.tl-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px}
+.tl-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.6}
+
+/* ─── LEARNINGS ─── */
+.learnings{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.learning{background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:22px 24px}
+.learning-n{font-family:var(--serif);font-style:italic;font-size:28px;color:var(--accent);line-height:1;margin-bottom:10px}
+.learning-t{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.learning-d{font-size:13px;font-weight:300;color:var(--muted);line-height:1.65}
+
+/* ─── NEXT ─── */
+.next{padding:80px clamp(28px,5vw,80px);background:var(--ink);text-align:center}
+.next-l{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+.next-t{font-family:var(--serif);font-style:italic;font-size:clamp(28px,4vw,48px);color:white;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;font-family:var(--sans);font-size:13px;font-weight:500;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px);background:#A83D28}
+
+/* ─── MODE VISIBILITY ─── */
+body:not(.academic-mode) .academic-only{display:none !important}
+body.academic-mode .exec-only{display:none !important}
+.sec,.cs-hero{transition:opacity .2s ease}
+body.switching .sec,body.switching .cs-hero{opacity:.5}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">
+    <span data-en>← Back to work</span>
+    <span data-es>← Volver</span>
+  </a>
+  <a href="index.html" class="nav-logo">Estefanía Reyes</a>
+  <div class="nav-right">
+    <span class="lang-sep">
+      <button class="lang-toggle" id="btn-en" onclick="setLang('en')" style="font-weight:500;color:var(--ink)">EN</button>
+      /
+      <button class="lang-toggle" id="btn-es" onclick="setLang('es')">ES</button>
+    </span>
+  </div>
+</nav>
+
+
+<!-- MODE BAR -->
+<div style="padding:0 clamp(28px,5vw,80px);height:52px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--faint);background:var(--white);position:sticky;top:56px;z-index:90">
+  <p style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">
+    <span data-en>Viewing mode</span><span data-es>Modo de vista</span>
+  </p>
+  <div style="display:flex;background:var(--faint);border-radius:100px;padding:3px">
+    <button id="btn-exec" onclick="setMode('exec')" aria-pressed="true" style="padding:7px 20px;border-radius:100px;border:none;background:var(--ink);color:white;font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(28,27,25,.2)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="2" rx="1" fill="currentColor"/><rect x="1" y="6" width="8" height="2" rx="1" fill="currentColor"/><rect x="1" y="10" width="10" height="2" rx="1" fill="currentColor"/></svg>
+      <span data-en>Executive summary</span><span data-es>Resumen ejecutivo</span>
+    </button>
+    <button id="btn-acad" onclick="setMode('acad')" aria-pressed="false" style="padding:7px 20px;border-radius:100px;border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 4.5V5.5L7 9L1 5.5V4.5L7 1Z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 6.5V10.5L7 13L11 10.5V6.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+      <span data-en>Full case study</span><span data-es>Case study completo</span>
+    </button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="hero-blob"></div>
+  <p class="cs-tag">
+    <span data-en>Meta-project · HTML · CSS · JS · Claude AI · In progress</span>
+    <span data-es>Meta-proyecto · HTML · CSS · JS · Claude AI · En proceso</span>
+  </p>
+  <h1 class="cs-title">
+    <span data-en>This portfolio —<br><em>building while<br>learning.</em></span>
+    <span data-es>Este portafolio —<br><em>construyendo mientras<br>aprendo.</em></span>
+  </h1>
+  <p class="cs-lead">
+    <span data-en>A UX/UI designer who decided to build her portfolio from scratch in code — not to become a developer, but to <strong>understand how what she designs actually gets built.</strong> Built in collaboration with Claude AI. This is that process, documented.</span>
+    <span data-es>Una diseñadora UX/UI que decidió construir su portafolio desde cero en código — no para ser programadora, sino para <strong>entender cómo se construye lo que diseña.</strong> Construido en colaboración con Claude AI. Este es ese proceso, documentado.</span>
+  </p>
+  <div class="meta-row">
+    <div class="mi">
+      <p class="ml"><span data-en>Start</span><span data-es>Inicio</span></p>
+      <p class="mv"><span data-en>March 2025</span><span data-es>Marzo 2025</span></p>
+    </div>
+    <div class="mi">
+      <p class="ml"><span data-en>Status</span><span data-es>Estado</span></p>
+      <p class="mv"><span data-en>In progress — live</span><span data-es>En proceso — publicado</span></p>
+    </div>
+    <div class="mi">
+      <p class="ml"><span data-en>Stack</span><span data-es>Stack</span></p>
+      <p class="mv">HTML · CSS · JS · Claude AI</p>
+    </div>
+    <div class="mi">
+      <p class="ml"><span data-en>Published</span><span data-es>Publicado</span></p>
+      <p class="mv">GitHub Pages</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="sec exec-only">
+  <div style="background:var(--white);border:1px solid var(--faint);border-radius:20px;padding:40px 44px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#E8A090)"></div>
+
+    <h2 style="font-family:var(--serif);font-size:clamp(20px,2.5vw,28px);line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;max-width:680px">
+      <span data-en>A designer learning to code — <em style="font-style:italic;color:var(--accent)">not to replace developers, but to design better products.</em></span>
+      <span data-es>Una diseñadora aprendiendo a programar — <em style="font-style:italic;color:var(--accent)">no para reemplazar desarrolladores, sino para diseñar mejores productos.</em></span>
+    </h2>
+
+    <p style="font-size:15px;font-weight:300;color:var(--muted);line-height:1.8;max-width:680px;margin-bottom:18px">
+      <span data-en>This portfolio was built from scratch in HTML, CSS and JavaScript — <strong style="color:var(--ink);font-weight:400">in active collaboration with Claude AI</strong> — as a learning project and proof of concept. Every case study, every toggle, every bilingual text pair was written and debugged in real code.</span>
+      <span data-es>Este portafolio fue construido desde cero en HTML, CSS y JavaScript — <strong style="color:var(--ink);font-weight:400">en colaboración activa con Claude AI</strong> — como proyecto de aprendizaje y prueba de concepto. Cada case study, cada toggle, cada par de textos bilingüe fue escrito y depurado en código real.</span>
+    </p>
+    <p style="font-size:15px;font-weight:300;color:var(--muted);line-height:1.8;max-width:680px;margin-bottom:28px">
+      <span data-en>The strategic decision: custom code over platform tools — no Figma Sites, no Webflow. Full ownership, no vendor lock-in, and a foundation that scales to React and Claude API integration.</span>
+      <span data-es>La decisión estratégica: código propio sobre herramientas de plataforma — sin Figma Sites, sin Webflow. Propiedad total, sin dependencia de proveedor, y una base que escala a React e integración con Claude API.</span>
+    </p>
+
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:28px 0">
+      <div style="background:var(--bg);border:1px solid var(--faint);border-radius:14px;padding:20px 22px">
+        <div style="font-family:var(--serif);font-size:32px;line-height:1;color:var(--accent);margin-bottom:4px">3</div>
+        <div style="font-size:12px;font-weight:300;color:var(--muted);line-height:1.5"><span data-en>Case studies live — CLOOP, Less Load, Elastic Ball</span><span data-es>Case studies publicados — CLOOP, Less Load, Elastic Ball</span></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--faint);border-radius:14px;padding:20px 22px">
+        <div style="font-family:var(--serif);font-size:32px;line-height:1;color:var(--accent);margin-bottom:4px">2</div>
+        <div style="font-size:12px;font-weight:300;color:var(--muted);line-height:1.5"><span data-en>Learning tracks running in parallel — code + AI</span><span data-es>Tracks de aprendizaje en paralelo — código + IA</span></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--faint);border-radius:14px;padding:20px 22px">
+        <div style="font-family:var(--serif);font-size:32px;line-height:1;color:var(--accent);margin-bottom:4px">∞</div>
+        <div style="font-size:12px;font-weight:300;color:var(--muted);line-height:1.5"><span data-en>In progress — this portfolio grows with every project</span><span data-es>En proceso — este portafolio crece con cada proyecto</span></div>
+      </div>
+    </div>
+
+    <!-- What I did -->
+    <p style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:32px 0 12px"><span data-en>What was built</span><span data-es>Lo que se construyó</span></p>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+      <li style="display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:300;color:var(--muted);line-height:1.65">
+        <div style="width:20px;height:20px;background:#EAF3DE;color:#3B6D11;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;margin-top:1px">✓</div>
+        <div><span data-en><strong style="color:var(--ink);font-weight:400">Executive/Academic toggle system</strong> — CSS visibility switching with JS, applied consistently across all case studies</span><span data-es><strong style="color:var(--ink);font-weight:400">Sistema de toggle ejecutivo/académico</strong> — cambio de visibilidad CSS con JS, aplicado consistentemente en todos los case studies</span></div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:300;color:var(--muted);line-height:1.65">
+        <div style="width:20px;height:20px;background:#EAF3DE;color:#3B6D11;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;margin-top:1px">✓</div>
+        <div><span data-en><strong style="color:var(--ink);font-weight:400">Full bilingual EN/ES</strong> — data-en/data-es attribute system, 86+ translation pairs per case study</span><span data-es><strong style="color:var(--ink);font-weight:400">Bilingüe completo EN/ES</strong> — sistema de atributos data-en/data-es, 86+ pares de traducción por case study</span></div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:300;color:var(--muted);line-height:1.65">
+        <div style="width:20px;height:20px;background:#EAF3DE;color:#3B6D11;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;margin-top:1px">✓</div>
+        <div><span data-en><strong style="color:var(--ink);font-weight:400">Published on GitHub Pages</strong> — resolved base64 image issue (13MB → 50KB per HTML), live at estefania0421.github.io</span><span data-es><strong style="color:var(--ink);font-weight:400">Publicado en GitHub Pages</strong> — resuelto problema de imágenes base64 (13MB → 50KB por HTML), en vivo en estefania0421.github.io</span></div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:300;color:var(--muted);line-height:1.65">
+        <div style="width:20px;height:20px;background:#EAF3DE;color:#3B6D11;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;margin-top:1px">✓</div>
+        <div><span data-en><strong style="color:var(--ink);font-weight:400">AI collaboration with Claude</strong> — roadmap, code generation, debugging, explanation and consistency throughout</span><span data-es><strong style="color:var(--ink);font-weight:400">Colaboración con Claude AI</strong> — roadmap, generación de código, debugging, explicación y consistencia durante todo el proceso</span></div>
+      </li>
+    </ul>
+
+    <!-- Skills -->
+    <p style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:28px 0 12px"><span data-en>Stack & skills</span><span data-es>Stack y habilidades</span></p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:100px;border:1px solid var(--faint);color:var(--muted);background:var(--white)">HTML</span>
+      <span style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:100px;border:1px solid var(--faint);color:var(--muted);background:var(--white)">CSS</span>
+      <span style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:100px;border:1px solid var(--faint);color:var(--muted);background:var(--white)">JavaScript</span>
+      <span style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:100px;border:1px solid var(--faint);color:var(--muted);background:var(--white)">GitHub Pages</span>
+      <span style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:100px;border:1px solid var(--faint);color:var(--muted);background:var(--white)">Claude AI</span>
+      <span style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:100px;border:1px solid var(--faint);color:var(--muted);background:var(--white)">Design Systems</span>
+      <span style="font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:100px;border:1px solid var(--faint);color:var(--muted);background:var(--white)">Prompt Engineering</span>
+    </div>
+  </div>
+</div>
+
+<!-- 01 WHY -->
+<div class="academic-only">
+<div class="sec">
+  <p class="phase"><span data-en>The decision</span><span data-es>La decisión</span></p>
+  <h2 class="stitle"><span data-en>Why code, <em>not a platform.</em></span><span data-es>Por qué código, <em>no una plataforma.</em></span></h2>
+
+  <p class="body">
+    <span data-en>The easy answer was Figma Sites, Wix, or Webflow. Fast, visual, no code required. But there was a longer-term reason to choose something harder: <strong>I want to understand how the products I design actually get built.</strong> Not to replace developers — to work better with them.</span>
+    <span data-es>La respuesta fácil era Figma Sites, Wix o Webflow. Rápido, visual, sin código. Pero había una razón de largo plazo para elegir algo más difícil: <strong>quiero entender cómo se construyen realmente los productos que diseño.</strong> No para reemplazar a los desarrolladores — para trabajar mejor con ellos.</span>
+  </p>
+
+  <div class="decision">
+    <p class="decision-q"><span data-en>The real reason</span><span data-es>La razón real</span></p>
+    <p class="decision-a">
+      <span data-en>"I want to learn HTML, CSS, JavaScript and React — not to become a programmer, but because beyond being a designer I want to have the advantage of understanding how the product is going to be built. That way I can create <strong>more accurate designs from the start.</strong>"</span>
+      <span data-es>"Quiero aprender HTML, CSS, JavaScript y React — no para ser programadora, sino porque más allá de ser diseñadora quiero tener el plus de entender cómo se va a construir el producto. De esa manera puedo crear <strong>diseños más acertados desde el inicio.</strong>"</span>
+    </p>
+  </div>
+
+  <p class="body">
+    <span data-en>There was also a practical reason learned the hard way: platform tools create vendor lock-in. When a platform changes its pricing, shuts down a feature, or disappears entirely, you lose your work. <strong>Code you own stays yours.</strong></span>
+    <span data-es>También había una razón práctica aprendida de la peor manera: las herramientas de plataforma crean dependencia del proveedor. Cuando una plataforma cambia sus precios, elimina una función o desaparece, pierdes tu trabajo. <strong>El código que posees se queda tuyo.</strong></span>
+  </p>
+</div>
+
+<!-- 02 THE CHALLENGE -->
+<div class="sec">
+  <p class="phase"><span data-en>The challenge</span><span data-es>El reto</span></p>
+  <h2 class="stitle"><span data-en>A designer <em>learning to think in code.</em></span><span data-es>Una diseñadora <em>aprendiendo a pensar en código.</em></span></h2>
+
+  <p class="body">
+    <span data-en>Design tools and code share some vocabulary — pixels, color codes, spacing — and those parts come naturally. But the mental model is completely different. In Figma, you see what you're making as you make it. In code, <strong>you have to imagine the visual result from text.</strong> That shift is harder than it sounds.</span>
+    <span data-es>Las herramientas de diseño y el código comparten algo de vocabulario — píxeles, códigos de color, espaciado — y esas partes salen de manera natural. Pero el modelo mental es completamente diferente. En Figma, ves lo que estás haciendo mientras lo haces. En código, <strong>tienes que imaginar el resultado visual desde el texto.</strong> Ese cambio es más difícil de lo que suena.</span>
+  </p>
+
+  <div class="quote">
+    <p>
+      <span data-en>"Being a designer learning code — design in Figma works in pixels, color codes and those things, which I solve from my designer self. But code is a very strong mental shift."</span>
+      <span data-es>"Ser diseñadora aprendiendo código — el diseño en Figma funciona en píxeles, códigos de color y esas cosas, que resuelvo desde mi yo diseñadora. Pero el código es un cambio mental muy fuerte."</span>
+    </p>
+    <cite>— Estefanía Reyes, <span data-en>on the process</span><span data-es>sobre el proceso</span></cite>
+  </div>
+
+  <p class="body">
+    <span data-en>The unexpected discovery: <strong>seeing something visual form from lines of code is genuinely exciting.</strong> The feedback loop is different from design — slower, more intentional — but when it works, it works in a way that feels more permanent. You understand why it works, not just that it does.</span>
+    <span data-es>El descubrimiento inesperado: <strong>ver cómo algo visual se forma a partir de líneas de código es genuinamente emocionante.</strong> El ciclo de retroalimentación es diferente al diseño — más lento, más intencional — pero cuando funciona, funciona de una manera que se siente más permanente. Entiendes por qué funciona, no solo que funciona.</span>
+  </p>
+</div>
+
+<!-- 03 WHAT WAS BUILT -->
+<div class="sec">
+  <p class="phase"><span data-en>The system</span><span data-es>El sistema</span></p>
+  <h2 class="stitle"><span data-en>What was <em>actually built.</em></span><span data-es>Qué se <em>construyó realmente.</em></span></h2>
+
+  <p class="body">
+    <span data-en>The portfolio isn't just a collection of pages — it's a small design system built from scratch with consistent patterns across every case study.</span>
+    <span data-es>El portafolio no es solo una colección de páginas — es un pequeño sistema de diseño construido desde cero con patrones consistentes en cada case study.</span>
+  </p>
+
+  <div class="stack-grid">
+    <div class="stack-card">
+      <div class="stack-icon">🔀</div>
+      <p class="stack-name"><span data-en>Dual mode toggle</span><span data-es>Toggle dual de modo</span></p>
+      <p class="stack-desc"><span data-en>Executive summary / Academic deep-dive — CSS visibility switching with JS toggle</span><span data-es>Resumen ejecutivo / Vista académica — cambio de visibilidad CSS con toggle JS</span></p>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🌐</div>
+      <p class="stack-name"><span data-en>Full bilingual EN/ES</span><span data-es>Bilingüe completo EN/ES</span></p>
+      <p class="stack-desc"><span data-en>Every text in two languages via data-en / data-es attributes and body class switching</span><span data-es>Cada texto en dos idiomas mediante atributos data-en / data-es y cambio de clase en body</span></p>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🎨</div>
+      <p class="stack-name"><span data-en>Per-project accent color</span><span data-es>Color de acento por proyecto</span></p>
+      <p class="stack-desc"><span data-en>Each case study has its own accent via CSS variables — CLOOP blue, Less Load purple, Elastic Ball red</span><span data-es>Cada case study tiene su propio acento via variables CSS — azul CLOOP, morado Less Load, rojo Elastic Ball</span></p>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">📦</div>
+      <p class="stack-name"><span data-en>External image system</span><span data-es>Sistema de imágenes externas</span></p>
+      <p class="stack-desc"><span data-en>Images extracted from base64 to /img/ folder for fast loading — from 13MB to ~50KB per HTML</span><span data-es>Imágenes extraídas de base64 a carpeta /img/ para carga rápida — de 13MB a ~50KB por HTML</span></p>
+    </div>
+  </div>
+
+  <div class="system">
+    <p class="system-title"><span data-en>Publishing stack</span><span data-es>Stack de publicación</span></p>
+    <div class="system-row">
+      <div class="sys-box accent"><span data-en>Write code</span><span data-es>Escribir código</span></div>
+      <span class="sys-arrow">→</span>
+      <div class="sys-box">GitHub repository</div>
+      <span class="sys-arrow">→</span>
+      <div class="sys-box">GitHub Pages</div>
+      <span class="sys-arrow">→</span>
+      <div class="sys-box accent">estefania0421.github.io</div>
+    </div>
+    <div class="system-row" style="margin-top:16px">
+      <div class="sys-label"><span data-en>HTML · CSS · JS (vanilla — no frameworks yet)</span><span data-es>HTML · CSS · JS (vanilla — sin frameworks aún)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 TIMELINE -->
+<div class="sec">
+  <p class="phase"><span data-en>The process</span><span data-es>El proceso</span></p>
+  <h2 class="stitle"><span data-en>Built <em>in parallel.</em></span><span data-es>Construido <em>en paralelo.</em></span></h2>
+  <p class="body">
+    <span data-en>This portfolio was built while learning to code — not after. Every case study taught something new about HTML, CSS or JavaScript that got applied to the next one.</span>
+    <span data-es>Este portafolio se construyó mientras se aprendía a programar — no después. Cada case study enseñó algo nuevo sobre HTML, CSS o JavaScript que se aplicó al siguiente.</span>
+  </p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot done">01</div>
+      <div class="tl-content">
+        <p class="tl-title"><span data-en>Portfolio structure + CLOOP</span><span data-es>Estructura del portafolio + CLOOP</span></p>
+        <p class="tl-desc"><span data-en>First case study. Learned CSS custom properties, sticky nav, section layout. Established the visual system that every other case study follows.</span><span data-es>Primer case study. Aprendí propiedades CSS personalizadas, nav sticky, layout de secciones. Establecí el sistema visual que siguen todos los demás.</span></p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot done">02</div>
+      <div class="tl-content">
+        <p class="tl-title"><span data-en>Executive / Academic toggle system</span><span data-es>Sistema de toggle ejecutivo / académico</span></p>
+        <p class="tl-desc"><span data-en>CSS visibility switching with JavaScript — one toggle that shows completely different content without page reload. Applied to all case studies.</span><span data-es>Cambio de visibilidad CSS con JavaScript — un toggle que muestra contenido completamente diferente sin recarga de página. Aplicado a todos los case studies.</span></p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot done">03</div>
+      <div class="tl-content">
+        <p class="tl-title"><span data-en>Full bilingual system EN/ES</span><span data-es>Sistema bilingüe completo EN/ES</span></p>
+        <p class="tl-desc"><span data-en>data-en / data-es attribute pattern with body class switching. 86+ translation pairs per case study. Same pattern as the main portfolio.</span><span data-es>Patrón de atributos data-en / data-es con cambio de clase en body. 86+ pares de traducción por case study. Mismo patrón que el portafolio principal.</span></p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot done">04</div>
+      <div class="tl-content">
+        <p class="tl-title"><span data-en>Less Load + Elastic Ball</span><span data-es>Less Load + Elastic Ball</span></p>
+        <p class="tl-desc"><span data-en>Built fresh with the full system from day one — no retrofitting. Learned from CLOOP to establish the architecture before writing content.</span><span data-es>Construidos desde cero con el sistema completo desde el primer día — sin retoques posteriores. Aprendido de CLOOP: establecer la arquitectura antes de escribir el contenido.</span></p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot done">05</div>
+      <div class="tl-content">
+        <p class="tl-title"><span data-en>Published on GitHub Pages</span><span data-es>Publicado en GitHub Pages</span></p>
+        <p class="tl-desc"><span data-en>Learned: base64 images in HTML cause blank pages. Solved by extracting all images to /img/ folder — HTML went from 13MB to 50KB.</span><span data-es>Aprendido: las imágenes base64 en HTML causan páginas en blanco. Resuelto extrayendo todas las imágenes a la carpeta /img/ — el HTML pasó de 13MB a 50KB.</span></p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot wip">06</div>
+      <div class="tl-content">
+        <p class="tl-title"><span data-en>CV Maker + remaining projects</span><span data-es>CV Maker + proyectos restantes</span></p>
+        <p class="tl-desc"><span data-en>In progress. Concert Plaza and TripFlow marked as coming soon. CV Maker planned as executive-only, shorter and more visual.</span><span data-es>En proceso. Concert Plaza y TripFlow marcados como próximamente. CV Maker planeado como solo ejecutivo, más corto y visual.</span></p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">07</div>
+      <div class="tl-content">
+        <p class="tl-title"><span data-en>React migration + Claude API chatbot</span><span data-es>Migración a React + chatbot Claude API</span></p>
+        <p class="tl-desc"><span data-en>Planned. Once JavaScript foundations are solid, migrate to React. Then integrate Claude API as a portfolio assistant — the first AI-native feature.</span><span data-es>Planeado. Una vez sólidas las bases de JavaScript, migrar a React. Luego integrar la API de Claude como asistente del portafolio — la primera función nativa de IA.</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 LEARNING PATH -->
+<div class="sec">
+  <p class="phase"><span data-en>The learning path</span><span data-es>El camino de aprendizaje</span></p>
+  <h2 class="stitle"><span data-en>Two tracks, <em>running in parallel.</em></span><span data-es>Dos tracks, <em>en paralelo.</em></span></h2>
+
+  <p class="body">
+    <span data-en>This portfolio is built on top of an active learning plan — not a 20-week course followed in order, but two parallel tracks that feed each other: one for code, one for AI. Every week something learned in a course gets applied directly to the portfolio.</span>
+    <span data-es>Este portafolio se construye sobre un plan de aprendizaje activo — no un curso de 20 semanas seguido en orden, sino dos tracks paralelos que se alimentan entre sí: uno de código, uno de IA. Cada semana algo aprendido en un curso se aplica directamente al portafolio.</span>
+  </p>
+
+  <!-- Track A -->
+  <div style="margin:36px 0 20px">
+    <p class="phase" style="margin-bottom:16px">
+      <span data-en>Track A — Code (Udemy · Jonas Schmedtmann)</span>
+      <span data-es>Track A — Código (Udemy · Jonas Schmedtmann)</span>
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:18px 22px">
+        <div style="width:36px;height:36px;background:#EAF3DE;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px">01</div>
+        <div>
+          <p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">Build Responsive Real-World Websites with HTML and CSS</p>
+          <p style="font-size:12px;font-weight:300;color:var(--muted)"><span data-en>Foundations — Flexbox, CSS Grid, responsive design. Where this portfolio started.</span><span data-es>Fundamentos — Flexbox, CSS Grid, diseño responsivo. Donde empezó este portafolio.</span></p>
+        </div>
+        <span style="font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:#EAF3DE;color:#3B6D11;white-space:nowrap"><span data-en>In progress</span><span data-es>En proceso</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:18px 22px">
+        <div style="width:36px;height:36px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px">02</div>
+        <div>
+          <p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">The Complete JavaScript Course</p>
+          <p style="font-size:12px;font-weight:300;color:var(--muted)"><span data-en>900k+ students. Explains JS from visual logic, not pure programmer logic — designed for this kind of learner.</span><span data-es>900k+ estudiantes. Explica JS desde la lógica visual, no desde la lógica de programador puro — diseñado para este tipo de aprendiz.</span></p>
+        </div>
+        <span style="font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:var(--faint);color:var(--muted);white-space:nowrap"><span data-en>Up next</span><span data-es>Siguiente</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:18px 22px">
+        <div style="width:36px;height:36px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px">03</div>
+        <div>
+          <p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">The Ultimate React Course — React 19</p>
+          <p style="font-size:12px;font-weight:300;color:var(--muted)"><span data-en>9 real projects. React 19, Next.js 16, Vite, Redux Toolkit, TailwindCSS, auth, production deploy. The final technical milestone.</span><span data-es>9 proyectos reales. React 19, Next.js 16, Vite, Redux Toolkit, TailwindCSS, autenticación, deploy a producción. El hito técnico final.</span></p>
+        </div>
+        <span style="font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:var(--faint);color:var(--muted);white-space:nowrap"><span data-en>Planned</span><span data-es>Planeado</span></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Track B -->
+  <div style="margin:36px 0 20px">
+    <p class="phase" style="margin-bottom:16px">
+      <span data-en>Track B — AI (Anthropic Academy · Free · Official certificates)</span>
+      <span data-es>Track B — IA (Anthropic Academy · Gratis · Certificados oficiales)</span>
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:18px 22px">
+        <div style="width:36px;height:36px;background:#EDE8FB;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px">🟣</div>
+        <div>
+          <p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">Claude 101</p>
+          <p style="font-size:12px;font-weight:300;color:var(--muted)"><span data-en>How Claude works, effective prompts, real use cases. No code required — the entry point.</span><span data-es>Cómo funciona Claude, prompts efectivos, casos de uso reales. Sin código — el punto de entrada.</span></p>
+        </div>
+        <span style="font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:#EAF3DE;color:#3B6D11;white-space:nowrap">✓ <span data-en>Completed</span><span data-es>Completado</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:18px 22px">
+        <div style="width:36px;height:36px;background:#EDE8FB;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px">🟣</div>
+        <div>
+          <p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">AI Fluency: Framework & Foundations</p>
+          <p style="font-size:12px;font-weight:300;color:var(--muted)"><span data-en>The flagship course. 4D framework: Delegation, Description, Discernment, Diligence. How to collaborate with AI effectively, efficiently and responsibly. With official certificate.</span><span data-es>El curso insignia. Framework 4D: Delegation, Description, Discernment, Diligence. Cómo colaborar con IA de forma efectiva, eficiente y responsable. Con certificado oficial.</span></p>
+        </div>
+        <span style="font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:var(--faint);color:var(--muted);white-space:nowrap"><span data-en>Up next</span><span data-es>Siguiente</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:18px 22px">
+        <div style="width:36px;height:36px;background:#EDE8FB;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px">🟣</div>
+        <div>
+          <p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">Building with Claude API</p>
+          <p style="font-size:12px;font-weight:300;color:var(--muted)"><span data-en>8+ hours. System prompts, tool use, context windows, AI app architecture. The course that enables building the portfolio chatbot.</span><span data-es>8+ horas. System prompts, tool use, context windows, arquitectura de apps con IA. El curso que permite construir el chatbot del portafolio.</span></p>
+        </div>
+        <span style="font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:var(--faint);color:var(--muted);white-space:nowrap"><span data-en>Planned</span><span data-es>Planeado</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--white);border:1px solid var(--faint);border-radius:12px;padding:18px 22px">
+        <div style="width:36px;height:36px;background:#EDE8FB;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px">🟣</div>
+        <div>
+          <p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">Introduction to Model Context Protocol (MCP)</p>
+          <p style="font-size:12px;font-weight:300;color:var(--muted)"><span data-en>The standard protocol for connecting AI to external tools. Highly valued in the 2026 market. The bonus track after the core plan.</span><span data-es>El protocolo estándar para conectar IA con herramientas externas. Muy valorado en el mercado 2026. El track bonus después del plan base.</span></p>
+        </div>
+        <span style="font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:var(--faint);color:var(--muted);white-space:nowrap"><span data-en>Planned</span><span data-es>Planeado</span></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Certificates -->
+  <div style="background:var(--ink);border-radius:16px;padding:36px 40px;margin-top:32px">
+    <p style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px">
+      <span data-en>Certificates to earn — all official Anthropic, verifiable on LinkedIn</span>
+      <span data-es>Certificados a obtener — todos oficiales de Anthropic, verificables en LinkedIn</span>
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px">
+        <p style="font-size:13px;color:white;font-weight:400">✓ Claude 101</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px">
+        <p style="font-size:13px;color:rgba(255,255,255,.6);font-weight:300">AI Fluency: Framework & Foundations</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px">
+        <p style="font-size:13px;color:rgba(255,255,255,.6);font-weight:300">Building with Claude API</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px">
+        <p style="font-size:13px;color:rgba(255,255,255,.6);font-weight:300">Introduction to MCP</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- AI COLLABORATION -->
+<div class="sec">
+  <p class="phase"><span data-en>AI collaboration</span><span data-es>Colaboración con IA</span></p>
+  <h2 class="stitle"><span data-en>Claude as <em>collaborator,<br>not replacement.</em></span><span data-es>Claude como <em>colaborador,<br>no reemplazo.</em></span></h2>
+
+  <p class="body">
+    <span data-en>This portfolio was built in active collaboration with Claude AI — and that collaboration started before a single line of code was written. The first step was taking Claude 101 to understand how the tool actually works, how to prompt effectively, and how to get the most out of it. From that foundation, a project was born.</span>
+    <span data-es>Este portafolio se construyó en colaboración activa con Claude AI — y esa colaboración empezó antes de escribir una sola línea de código. El primer paso fue tomar Claude 101 para entender cómo funciona realmente la herramienta, cómo hacer prompts efectivos y cómo sacarle el máximo. De esa base nació un proyecto.</span>
+  </p>
+
+  <div class="decision">
+    <p class="decision-q"><span data-en>What Claude did in this project</span><span data-es>Qué hizo Claude en este proyecto</span></p>
+    <p class="decision-a">
+      <span data-en>Defined the learning roadmap · Generated and corrected code · Explained concepts when something wasn't understood · Maintained consistency across the design system · Helped debug real publishing errors · And accompanied the entire process — not as an answer machine, but as a thinking partner.</span>
+      <span data-es>Definió el camino de aprendizaje · Generó y corrigió el código · Explicó conceptos cuando algo no se entendía · Mantuvo la consistencia del sistema de diseño · Ayudó a depurar errores reales de publicación · Y acompañó todo el proceso — no como máquina de respuestas, sino como compañero de pensamiento.</span>
+    </p>
+  </div>
+
+  <p class="body">
+    <span data-en>But there's something important to say about this — something that gets lost in the "AI replaces professionals" discourse that's been repeated so much it's started to feel true.</span>
+    <span data-es>Pero hay algo importante que decir sobre esto — algo que se pierde en el discurso de "la IA reemplaza a los profesionales" que se ha repetido tanto que empezó a parecer verdad.</span>
+  </p>
+
+  <div class="quote">
+    <p>
+      <span data-en>"Replacing a professional with AI, while it's been a much-used narrative, is a half-truth. You need to know the language — that's exactly why I'm learning to code. If I didn't know what I wanted to correct, it would be very hard to create what I really have in mind. If we stay only with what AI produces, we're going to end up in a world where everything looks the same."</span>
+      <span data-es>"Reemplazar a un profesional por la IA, si bien ha sido un discurso muy usado, es una verdad a medias. Necesitas conocer el lenguaje — por lo mismo estoy aprendiendo programación. Porque si no supiese qué quiero corregir, sería muy difícil crear lo que realmente tengo en mente. Si nos quedamos solo con lo que la IA produce, vamos a terminar en un mundo donde todo luce igual."</span>
+    </p>
+    <cite>— Estefanía Reyes</cite>
+  </div>
+
+  <p class="body">
+    <span data-en>The courses exist for exactly this reason. Learning HTML, CSS and JavaScript isn't about being able to build everything from scratch — it's about having enough language to <strong>direct, correct and push beyond what AI generates by default.</strong> The designer's eye, the design decisions, the narrative of each case study — those came from a person. Claude helped build the vehicle. The destination was always hers.</span>
+    <span data-es>Los cursos existen exactamente por eso. Aprender HTML, CSS y JavaScript no es para poder construir todo desde cero — es para tener suficiente lenguaje para <strong>dirigir, corregir y empujar más allá de lo que la IA genera por defecto.</strong> El ojo de diseñadora, las decisiones de diseño, la narrativa de cada case study — eso vino de una persona. Claude ayudó a construir el vehículo. El destino siempre fue de ella.</span>
+  </p>
+</div>
+
+<!-- 06 LEARNINGS -->
+<div class="sec">
+  <p class="phase"><span data-en>What I learned</span><span data-es>Lo que aprendí</span></p>
+  <h2 class="stitle"><span data-en>The unexpected <em>lessons.</em></span><span data-es>Las lecciones <em>inesperadas.</em></span></h2>
+
+  <div class="learnings">
+    <div class="learning">
+      <div class="learning-n">01</div>
+      <p class="learning-t"><span data-en>Design decisions have technical consequences</span><span data-es>Las decisiones de diseño tienen consecuencias técnicas</span></p>
+      <p class="learning-d"><span data-en>Every visual choice — a sticky nav, a smooth toggle, a bilingual system — requires understanding how the browser renders and manages state. Design and code are the same decision made twice.</span><span data-es>Cada decisión visual — un nav sticky, un toggle suave, un sistema bilingüe — requiere entender cómo el navegador renderiza y gestiona el estado. El diseño y el código son la misma decisión tomada dos veces.</span></p>
+    </div>
+    <div class="learning">
+      <div class="learning-n">02</div>
+      <p class="learning-t"><span data-en>Systems thinking scales; improvisation doesn't</span><span data-es>El pensamiento sistémico escala; la improvisación no</span></p>
+      <p class="learning-d"><span data-en>CLOOP was built without a clear architecture and had to be retrofitted three times. Less Load and Elastic Ball were built with the full system from day one and took a fraction of the time.</span><span data-es>CLOOP se construyó sin una arquitectura clara y tuvo que retocar tres veces. Less Load y Elastic Ball se construyeron con el sistema completo desde el primer día y tomaron una fracción del tiempo.</span></p>
+    </div>
+    <div class="learning">
+      <div class="learning-n">03</div>
+      <p class="learning-t"><span data-en>Platform independence is a design principle</span><span data-es>La independencia de plataforma es un principio de diseño</span></p>
+      <p class="learning-d"><span data-en>Choosing vanilla HTML/CSS/JS over Figma Sites or Webflow means the portfolio works anywhere, scales to any future feature, and belongs entirely to its author. Vendor lock-in is a UX problem too.</span><span data-es>Elegir HTML/CSS/JS vanilla sobre Figma Sites o Webflow significa que el portafolio funciona en cualquier lugar, escala a cualquier función futura y pertenece completamente a su autora. La dependencia del proveedor también es un problema de UX.</span></p>
+    </div>
+    <div class="learning">
+      <div class="learning-n">04</div>
+      <p class="learning-t"><span data-en>Shipping beats perfecting</span><span data-es>Publicar supera a perfeccionar</span></p>
+      <p class="learning-d"><span data-en>A portfolio published with 3 solid case studies is worth more than a perfect one that exists only locally. The act of publishing — debugging real URLs, fixing real errors — taught more than any tutorial.</span><span data-es>Un portafolio publicado con 3 case studies sólidos vale más que uno perfecto que solo existe en local. El acto de publicar — depurar URLs reales, corregir errores reales — enseñó más que cualquier tutorial.</span></p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- NEXT -->
+<div class="next">
+  <p class="next-l"><span data-en>See the result</span><span data-es>Ver el resultado</span></p>
+  <p class="next-t"><span data-en>Back to the portfolio →</span><span data-es>Volver al portafolio →</span></p>
+  <a href="index.html" class="btn">
+    <span data-en>View all projects</span><span data-es>Ver todos los proyectos</span>
+  </a>
+</div>
+
+<script>
+function setMode(mode) {
+  const body = document.body;
+  const bE = document.getElementById('btn-exec');
+  const bA = document.getElementById('btn-acad');
+  body.classList.add('switching');
+  setTimeout(() => body.classList.remove('switching'), 220);
+  if (mode === 'acad') {
+    body.classList.add('academic-mode');
+    bA.style.background = 'var(--ink)'; bA.style.color = 'white'; bA.setAttribute('aria-pressed','true');
+    bE.style.background = 'transparent'; bE.style.color = 'var(--muted)'; bE.setAttribute('aria-pressed','false');
+  } else {
+    body.classList.remove('academic-mode');
+    bE.style.background = 'var(--ink)'; bE.style.color = 'white'; bE.setAttribute('aria-pressed','true');
+    bA.style.background = 'transparent'; bA.style.color = 'var(--muted)'; bA.setAttribute('aria-pressed','false');
+  }
+  window.scrollTo({top:110, behavior:'smooth'});
+}
+
+function setLang(lang) {
+  document.body.classList.toggle('es', lang === 'es');
+  document.getElementById('btn-en').style.fontWeight = lang === 'en' ? '500' : '300';
+  document.getElementById('btn-en').style.color      = lang === 'en' ? 'var(--ink)' : 'var(--muted)';
+  document.getElementById('btn-es').style.fontWeight = lang === 'es' ? '500' : '300';
+  document.getElementById('btn-es').style.color      = lang === 'es' ? 'var(--ink)' : 'var(--muted)';
+}
+</script>
+</body>
+</html>
