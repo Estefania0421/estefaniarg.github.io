@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concert Plaza — Case Study · Estefanía Reyes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F4F2;--ink:#1C1B19;--muted:#8A8880;--faint:#E8E6E2;
+  --white:#FFFFFF;--accent:#5B3FD4;--soft:rgba(91,63,212,.06);
+  --serif:"Instrument Serif",Georgia,serif;--sans:"Geist",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6;overflow-x:hidden;max-width:1280px;margin:0 auto}
+
+[data-es]{display:none}
+body.es [data-en]{display:none}
+body.es [data-es]{display:block}
+span[data-es]{display:none}
+body.es span[data-en]{display:none}
+body.es span[data-es]{display:inline}
+
+nav{position:sticky;top:0;background:rgba(245,244,242,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);padding:0 clamp(20px,4vw,56px);height:56px;display:flex;align-items:center;justify-content:space-between;z-index:100}
+.nav-back{font-size:13px;color:var(--muted);text-decoration:none}.nav-back:hover{color:var(--ink)}
+.nav-logo{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-next{font-size:13px;color:var(--muted);text-decoration:none}.nav-next:hover{color:var(--ink)}
+.lang-sep{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--faint)}
+.lang-toggle{font-size:12px;color:var(--muted);cursor:pointer;border:none;background:none;font-family:var(--sans);padding:0}
+
+/* ─── HERO ─── */
+.cs-hero{padding:80px clamp(28px,5vw,80px) 64px;border-bottom:1px solid var(--faint);position:relative;overflow:hidden}
+.hero-blob{position:absolute;width:500px;height:400px;background:rgba(91,63,212,.05);border-radius:50%;filter:blur(80px);top:-60px;right:-40px;pointer-events:none}
+.cs-tag{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.cs-tag::after{content:'';width:32px;height:1px;background:var(--accent);opacity:.4}
+.cs-title{font-family:var(--serif);font-size:clamp(44px,6vw,76px);line-height:1.0;letter-spacing:-.025em;margin-bottom:20px}
+.cs-title em{font-style:italic;color:var(--accent)}
+.cs-lead{font-size:17px;font-weight:300;color:var(--muted);max-width:580px;line-height:1.8;margin-bottom:48px}
+.cs-lead strong{color:var(--ink);font-weight:400}
+.meta-row{display:flex;border:1px solid var(--faint);border-radius:12px;overflow:hidden;max-width:720px;background:var(--white)}
+.mi{flex:1;padding:16px 20px;border-right:1px solid var(--faint)}.mi:last-child{border-right:none}
+.ml{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.mv{font-size:13px;color:var(--ink);line-height:1.5}
+
+/* ─── SECTIONS ─── */
+.sec{padding:80px clamp(28px,5vw,80px);border-bottom:1px solid var(--faint)}
+.phase{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.stitle{font-family:var(--serif);font-size:clamp(26px,3.5vw,42px);line-height:1.1;letter-spacing:-.02em;margin-bottom:24px}
+.stitle em{font-style:italic;color:var(--accent)}
+.body{font-size:15px;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:18px;max-width:660px}
+.body strong{color:var(--ink);font-weight:400}
+
+.findings{display:flex;flex-direction:column;gap:10px;margin:24px 0}
+.finding{background:var(--white);border:1px solid var(--faint);border-radius:10px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start}
+.fi{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;background:var(--soft);color:var(--accent)}
+.ft{font-size:13px;font-weight:300;color:var(--muted);line-height:1.65}
+.ft strong{color:var(--ink);font-weight:400}
+
+.screen-section{background:#000000;border-radius:20px;padding:48px 40px;margin:40px 0}
+.screen-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;align-items:start}
+.screen-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.screen-wrap img{width:100%;border-radius:8px;display:block}
+.screen-label{font-size:12px;font-weight:500;color:rgba(255,255,255,.4);text-align:center;letter-spacing:.04em}
+
+img{display:block}
+.img-hero{width:100%;height:480px;object-fit:cover;border-radius:16px;margin:32px 0}
+
+/* ─── NEXT ─── */
+.next{padding:80px clamp(28px,5vw,80px);background:var(--ink);text-align:center}
+.next-l{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+.next-t{font-family:var(--serif);font-style:italic;font-size:clamp(28px,4vw,48px);color:white;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;font-family:var(--sans);font-size:13px;font-weight:500;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back"><span data-en>← Back to work</span><span data-es>← Volver</span></a>
+  <a href="index.html" class="nav-logo">Estefanía Reyes</a>
+  <div class="nav-right">
+    <span class="lang-sep">
+      <button class="lang-toggle" id="btn-en" onclick="setLang('en')" style="font-weight:500;color:var(--ink)">EN</button>
+      /
+      <button class="lang-toggle" id="btn-es" onclick="setLang('es')">ES</button>
+    </span>
+    <a href="cloop_case_study.html" class="nav-next">CLOOP →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="hero-blob"></div>
+  <p class="cs-tag">
+    <span data-en>UX/UI · Mobile Design · Event Tech</span>
+    <span data-es>UX/UI · Diseño Móvil · Event Tech</span>
+  </p>
+  <h1 class="cs-title">
+    <span data-en>Concert Plaza —<br><em>Scanning thousands,<br>without friction.</em></span>
+    <span data-es>Concert Plaza —<br><em>Validar miles,<br>sin fricción.</em></span>
+  </h1>
+  <p class="cs-lead">
+    <span data-en>Concert Plaza is a robust digital platform for managing live event experiences, with multiple user types — entrepreneurs, clients, technicians and validators. This project focuses on the <strong>technical validator's mobile app</strong>: the person controlling attendee entry via QR code scanning.</span>
+    <span data-es>Concert Plaza es una plataforma digital robusta para gestionar la experiencia de eventos en vivo, con múltiples tipos de usuario — empresarios, clientes, técnicos y validadores. Este proyecto se enfoca en la <strong>aplicación móvil del técnico validador</strong>: la persona que controla el ingreso de asistentes mediante escaneo de códigos QR.</span>
+  </p>
+  <div class="meta-row">
+    <div class="mi"><p class="ml"><span data-en>Year</span><span data-es>Año</span></p><p class="mv">2024</p></div>
+    <div class="mi"><p class="ml"><span data-en>Role</span><span data-es>Rol</span></p><p class="mv">UX/UI Design</p></div>
+    <div class="mi"><p class="ml"><span data-en>Context</span><span data-es>Contexto</span></p><p class="mv">Applus LATAM</p></div>
+    <div class="mi"><p class="ml"><span data-en>Platform</span><span data-es>Plataforma</span></p><p class="mv">Mobile iOS/Android</p></div>
+  </div>
+
+  <!-- HERO IMAGE inside hero section, after meta -->
+  <img src="img/cp_hero_concert.jpg" alt="Concert Plaza" class="img-hero">
+</div>
+
+<!-- OBJECTIVE -->
+<div class="sec">
+  <p class="phase"><span data-en>Objective</span><span data-es>Objetivo</span></p>
+  <h2 class="stitle"><span data-en>Design for <em>speed and no errors.</em></span><span data-es>Diseñar para <em>velocidad y cero errores.</em></span></h2>
+  <p class="body">
+    <span data-en>Design functional, accessible and visually consistent screens so the validator can complete their task <strong>fast, accurately and without friction</strong> — even under limited connectivity or crowd pressure in high-flow environments.</span>
+    <span data-es>Diseñar pantallas funcionales, accesibles y visualmente consistentes para que el usuario validador pueda realizar su tarea de forma <strong>rápida, precisa y sin fricciones</strong>, incluso en condiciones de conectividad limitada o bajo presión en entornos de alto flujo.</span>
+  </p>
+  <p class="body">
+    <span data-en>As UX/UI Designer, I focused entirely on the validator experience — the person responsible for controlling access for thousands of attendees at the door, often in noisy and high-pressure environments.</span>
+    <span data-es>Como Diseñadora UX/UI, me enfoqué completamente en la experiencia del validador — la persona responsable de controlar el acceso de miles de asistentes en la puerta, frecuentemente en entornos ruidosos y de alta presión.</span>
+  </p>
+</div>
+
+<!-- BENCHMARKING -->
+<div class="sec">
+  <p class="phase"><span data-en>Research</span><span data-es>Investigación</span></p>
+  <h2 class="stitle"><span data-en>Learning from <em>what exists.</em></span><span data-es>Aprender de <em>lo que existe.</em></span></h2>
+  <p class="body">
+    <span data-en>A comparative analysis of Eventbrite, SimpleTix and Ticket Validator App evaluated four key aspects to define the design criteria:</span>
+    <span data-es>Se realizó un análisis comparativo de Eventbrite, SimpleTix y Ticket Validator App, evaluando cuatro aspectos clave para definir los criterios de diseño:</span>
+  </p>
+  <div class="findings">
+    <div class="finding"><div class="fi">01</div><p class="ft"><span data-en><strong>Real-time scanning and validation</strong> — sub-second response is non-negotiable at high-volume event doors.</span><span data-es><strong>Escaneo y validación en tiempo real</strong> — la respuesta en menos de un segundo es innegociable en puertas de eventos de alto volumen.</span></p></div>
+    <div class="finding"><div class="fi">02</div><p class="ft"><span data-en><strong>Duplicate ticket and re-entry handling</strong> — the interface must communicate already-used tickets instantly and unambiguously.</span><span data-es><strong>Manejo de boletos duplicados y reingresos</strong> — la interfaz debe comunicar boletos ya utilizados de forma instantánea e inequívoca.</span></p></div>
+    <div class="finding"><div class="fi">03</div><p class="ft"><span data-en><strong>Visual and audio feedback</strong> — in loud environments, color states alone fail. The best implementations combine green/red/yellow states with distinct audio cues.</span><span data-es><strong>Feedback visual y auditivo</strong> — en entornos ruidosos, los estados de color solos fallan. Las mejores implementaciones combinan estados verde/rojo/amarillo con señales auditivas.</span></p></div>
+    <div class="finding"><div class="fi">04</div><p class="ft"><span data-en><strong>Attendance record and cloud sync</strong> — validators need an auditable history. Cloud sync is critical when offline sessions must reconcile later.</span><span data-es><strong>Registro de asistencia y sincronización en nube</strong> — los validadores necesitan un historial auditable. La sincronización es crítica cuando las sesiones offline deben reconciliarse después.</span></p></div>
+  </div>
+</div>
+
+<!-- SCREENS -->
+<div class="sec">
+  <p class="phase"><span data-en>Design</span><span data-es>Diseño</span></p>
+  <h2 class="stitle"><span data-en>The <em>4 key screens.</em></span><span data-es>Las <em>4 pantallas clave.</em></span></h2>
+  <p class="body">
+    <span data-en>Based on functional requirements and user stories, four screens cover the complete validator flow:</span>
+    <span data-es>Con base en requerimientos funcionales e historias de usuario, cuatro pantallas cubren el flujo completo del validador:</span>
+  </p>
+  <div class="findings" style="margin-bottom:48px">
+    <div class="finding"><div class="fi">A</div><p class="ft"><span data-en><strong>Home Dashboard</strong> — event info, assigned zone and access to start scanning. Everything visible at a glance before doors open.</span><span data-es><strong>Dashboard de Inicio</strong> — información del evento, zona asignada y acceso para iniciar el escaneo. Todo visible de un vistazo antes de abrir las puertas.</span></p></div>
+    <div class="finding"><div class="fi">B</div><p class="ft"><span data-en><strong>QR Scanner</strong> — activates camera, includes flashlight option for dark venues, immediate visual feedback on ticket status.</span><span data-es><strong>Escáner QR</strong> — activa la cámara, incluye linterna para recintos oscuros, retroalimentación visual inmediata según el estado del boleto.</span></p></div>
+    <div class="finding"><div class="fi">C</div><p class="ft"><span data-en><strong>Scan Result</strong> — three clear states: valid (green), already used (yellow), invalid (red). Designed for decisions in under 2 seconds.</span><span data-es><strong>Resultado del Escaneo</strong> — tres estados claros: válido (verde), ya utilizado (amarillo), inválido (rojo). Diseñado para decisiones en menos de 2 segundos.</span></p></div>
+    <div class="finding"><div class="fi">D</div><p class="ft"><span data-en><strong>Validation History</strong> — navigable list with filters and search for re-entry control. The validator's audit trail during and after the event.</span><span data-es><strong>Historial de Validaciones</strong> — lista navegable con filtros y buscador para control de reingresos. El rastro de auditoría del validador durante y después del evento.</span></p></div>
+  </div>
+
+  <div class="screen-section"><div class="screen-grid">
+    <div class="screen-wrap">
+      <img src="img/cp_dashboard.jpg" alt="Dashboard">
+      <p class="screen-label"><span data-en>Home Dashboard</span><span data-es>Dashboard</span></p>
+    </div>
+    <div class="screen-wrap">
+      <img src="img/cp_scanner.jpg" alt="QR Scanner">
+      <p class="screen-label"><span data-en>QR Scanner</span><span data-es>Escáner QR</span></p>
+    </div>
+    <div class="screen-wrap">
+      <img src="img/cp_tickets.jpg" alt="Ticket history">
+      <p class="screen-label"><span data-en>Validation History</span><span data-es>Historial</span></p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="next">
+  <p class="next-l"><span data-en>Next case study</span><span data-es>Siguiente caso</span></p>
+  <p class="next-t">CLOOP →</p>
+  <a href="cloop_case_study.html" class="btn"><span data-en>View project</span><span data-es>Ver proyecto</span></a>
+</div>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('es', lang === 'es');
+  document.getElementById('btn-en').style.fontWeight = lang === 'en' ? '500' : '300';
+  document.getElementById('btn-en').style.color = lang === 'en' ? 'var(--ink)' : 'var(--muted)';
+  document.getElementById('btn-es').style.fontWeight = lang === 'es' ? '500' : '300';
+  document.getElementById('btn-es').style.color = lang === 'es' ? 'var(--ink)' : 'var(--muted)';
+}
+</script>
+</body>
+</html>
