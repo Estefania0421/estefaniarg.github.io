@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applus LATAM — Estefanía Reyes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F4F2;--ink:#1C1B19;--muted:#8A8880;--faint:#E8E6E2;
+  --white:#FFFFFF;--accent:#FF6900;
+  --serif:"Instrument Serif",Georgia,serif;--sans:"Geist",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6;overflow-x:hidden;max-width:1280px;margin:0 auto}
+
+[data-es]{display:none}
+body.es [data-en]{display:none}
+body.es [data-es]{display:block}
+span[data-es]{display:none}
+body.es span[data-en]{display:none}
+body.es span[data-es]{display:inline}
+
+/* NAV */
+nav{position:sticky;top:0;background:rgba(245,244,242,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);padding:0 clamp(20px,4vw,56px);height:56px;display:flex;align-items:center;justify-content:space-between;z-index:100}
+.nav-back{font-size:13px;color:var(--muted);text-decoration:none}.nav-back:hover{color:var(--ink)}
+.nav-logo{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:20px}
+.lang-sep{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--faint)}
+.lang-toggle{font-size:12px;color:var(--muted);cursor:pointer;border:none;background:none;font-family:var(--sans);padding:0}
+
+/* HERO */
+.hero{padding:80px clamp(28px,5vw,80px) 64px;border-bottom:1px solid var(--faint);position:relative;overflow:hidden}
+.hero-blob{position:absolute;width:500px;height:400px;background:rgba(196,83,58,.04);border-radius:50%;filter:blur(80px);top:-60px;right:-40px;pointer-events:none}
+.tag{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.tag::after{content:'';width:32px;height:1px;background:var(--accent);opacity:.4}
+.hero-title{font-family:var(--serif);font-size:clamp(44px,6vw,76px);line-height:1.0;letter-spacing:-.025em;margin-bottom:20px}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-lead{font-size:17px;font-weight:300;color:var(--muted);max-width:600px;line-height:1.8;margin-bottom:48px}
+.hero-lead strong{color:var(--ink);font-weight:400}
+.meta-row{display:flex;border:1px solid var(--faint);border-radius:12px;overflow:hidden;max-width:600px;background:var(--white)}
+.mi{flex:1;padding:16px 20px;border-right:1px solid var(--faint)}.mi:last-child{border-right:none}
+.ml{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.mv{font-size:13px;color:var(--ink);line-height:1.5}
+
+/* PROJECTS */
+.projects{padding:0 clamp(28px,5vw,80px)}
+.project{padding:64px 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start}
+.project:last-child{border-bottom:none}
+.proj-number{font-family:var(--serif);font-style:italic;font-size:64px;color:var(--faint);line-height:1;margin-bottom:16px}
+.proj-name{font-family:var(--serif);font-size:28px;line-height:1.1;letter-spacing:-.01em;margin-bottom:8px}
+.proj-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px}
+.status-progress{background:#FEF3E2;color:#A05C00}
+.status-done{background:#EAF3DE;color:#3B6D11}
+.proj-desc{font-size:15px;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:28px;max-width:620px}
+.proj-desc strong{color:var(--ink);font-weight:400}
+.roles{display:flex;flex-direction:column;gap:0;margin-bottom:28px}
+.role-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.role-tags{display:flex;flex-wrap:wrap;gap:8px}
+.role-tag{font-size:11px;font-weight:500;letter-spacing:.04em;padding:6px 14px;border-radius:100px;border:1px solid var(--faint);color:var(--ink);background:var(--white)}
+.note{font-size:13px;font-weight:300;color:var(--muted);font-style:italic;padding:14px 18px;background:var(--white);border:1px solid var(--faint);border-radius:10px;border-left:2px solid var(--accent)}
+
+/* NEXT */
+.next{padding:80px clamp(28px,5vw,80px);background:var(--ink);text-align:center}
+.next-l{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+.next-t{font-family:var(--serif);font-style:italic;font-size:clamp(28px,4vw,48px);color:white;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;font-family:var(--sans);font-size:13px;font-weight:500;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .2s}
+.btn:hover{transform:translateY(-2px)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back"><span data-en>← Back to work</span><span data-es>← Volver</span></a>
+  <a href="index.html" class="nav-logo">Estefanía Reyes</a>
+  <div class="nav-right">
+    <span class="lang-sep">
+      <button class="lang-toggle" id="btn-en" onclick="setLang('en')" style="font-weight:500;color:var(--ink)">EN</button>
+      /
+      <button class="lang-toggle" id="btn-es" onclick="setLang('es')">ES</button>
+    </span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-blob"></div>
+  <p class="tag">
+    <span data-en>Professional work · Applus LATAM · 2025–present</span>
+    <span data-es>Trabajo profesional · Applus LATAM · 2025–presente</span>
+  </p>
+  <h1 class="hero-title">
+    <span data-en>Applus LATAM —<br><em>Professional<br>projects.</em></span>
+    <span data-es>Applus LATAM —<br><em>Proyectos<br>laborales.</em></span>
+  </h1>
+  <p class="hero-lead">
+    <span data-en>These are professional projects developed at Applus LATAM. Due to confidentiality agreements, detailed interfaces and internal flows are not shown — but the context, my role and the scope of each project are described below.</span>
+    <span data-es>Estos son proyectos profesionales desarrollados en Applus LATAM. Por acuerdos de confidencialidad no se muestran interfaces detalladas ni flujos internos — pero el contexto, mi rol y el alcance de cada proyecto se describen a continuación.</span>
+  </p>
+  <div class="meta-row">
+    <div class="mi">
+      <p class="ml"><span data-en>Company</span><span data-es>Empresa</span></p>
+      <p class="mv">Applus LATAM</p>
+    </div>
+    <div class="mi">
+      <p class="ml"><span data-en>Period</span><span data-es>Período</span></p>
+      <p class="mv">2025 — <span data-en>Present</span><span data-es>Presente</span></p>
+    </div>
+    <div class="mi">
+      <p class="ml"><span data-en>Projects</span><span data-es>Proyectos</span></p>
+      <p class="mv">3</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="projects">
+
+  <!-- 01 ASSET+ -->
+  <div class="project">
+    <div>
+      <p class="proj-number">01</p>
+      <h2 class="proj-name">Asset+</h2>
+      <br>
+      <span class="proj-status status-done">
+        <span data-en>Delivered</span><span data-es>Entregado</span>
+      </span>
+    </div>
+    <div>
+      <p class="proj-desc">
+        <span data-en>Asset+ is a management application designed to support <strong>inventory control, asset operations and related activities</strong> within assigned projects and operational contexts. The application allows users to work with different operational flows, manage movements, consult inventory data, and perform actions related to asset tracking and control.</span>
+        <span data-es>Asset+ es una aplicación de gestión diseñada para apoyar el <strong>control de inventario, operaciones de activos y actividades relacionadas</strong> dentro de proyectos y contextos operacionales asignados. La aplicación permite a los usuarios trabajar con diferentes flujos operacionales, gestionar movimientos, consultar datos de inventario y realizar acciones relacionadas con el seguimiento y control de activos.</span>
+      </p>
+      <div class="roles">
+        <p class="role-label"><span data-en>My roles</span><span data-es>Mis roles</span></p>
+        <div class="role-tags">
+          <span class="role-tag">UX/UI Design</span>
+          <span class="role-tag"><span data-en>Prototyping</span><span data-es>Prototipado</span></span>
+          <span class="role-tag"><span data-en>User manuals</span><span data-es>Manuales de usuario</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 SMART CURRICULUM -->
+  <div class="project">
+    <div>
+      <p class="proj-number">02</p>
+      <h2 class="proj-name">Smart Curriculum</h2>
+      <br>
+      <span class="proj-status status-progress">
+        <span data-en>In progress — UAT phase</span><span data-es>En curso — fase UAT</span>
+      </span>
+    </div>
+    <div>
+      <p class="proj-desc">
+        <span data-en>An <strong>AI-powered web platform</strong> that centralizes and automates CV management across Applus LATAM. The platform unifies multiple document sources — BUK, SharePoint and bulk uploads — into a single system, enabling HR teams to search and compare candidates through <strong>semantic search powered by Azure AI</strong>. Includes automated ingestion, intelligent indexing, and Active Directory authentication.</span>
+        <span data-es>Una <strong>plataforma web impulsada por IA</strong> que centraliza y automatiza la gestión de hojas de vida en Applus LATAM. La plataforma unifica múltiples fuentes de documentos — BUK, SharePoint y cargas masivas — en un único sistema, permitiendo a los equipos de RR.HH. buscar y comparar candidatos mediante <strong>búsqueda semántica con Azure AI</strong>. Incluye ingesta automatizada, indexación inteligente y autenticación con Active Directory.</span>
+      </p>
+      <div class="roles">
+        <p class="role-label"><span data-en>My roles</span><span data-es>Mis roles</span></p>
+        <div class="role-tags">
+          <span class="role-tag">UX/UI Design</span>
+          <span class="role-tag"><span data-en>Prototyping</span><span data-es>Prototipado</span></span>
+          <span class="role-tag"><span data-en>Requirements gathering</span><span data-es>Levantamiento de requisitos</span></span>
+          <span class="role-tag">QA Testing</span>
+          <span class="role-tag"><span data-en>Project coordination</span><span data-es>Coordinación de proyecto</span></span>
+          <span class="role-tag"><span data-en>Schedule management</span><span data-es>Manejo de cronograma</span></span>
+        </div>
+      </div>
+      <p class="note">
+        <span data-en>Currently in QA delivery phase — UAT with the client is next. This project combines AI development, Azure integrations, HR platform design and cross-team coordination.</span>
+        <span data-es>Actualmente en fase de entrega del entorno QA — los UAT con el cliente son el siguiente paso. Este proyecto combina desarrollo de IA, integraciones Azure, diseño de plataforma HR y coordinación entre equipos.</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 03 SOIL MECHANICS REPORT -->
+  <div class="project">
+    <div>
+      <p class="proj-number">03</p>
+      <h2 class="proj-name">Soil Mechanics Report</h2>
+      <br>
+      <span class="proj-status status-progress">
+        <span data-en>In progress — development phase</span><span data-es>En curso — fase de desarrollo</span>
+      </span>
+    </div>
+    <div>
+      <p class="proj-desc">
+        <span data-en>A web application for <strong>automating geotechnical report generation</strong>. The system allows users to structure, manage and consolidate information from multiple sources into a standardized document. It optimizes the workflow through metadata configuration, section selection and data linking from SharePoint repositories — reducing manual intervention and enabling version management and document delivery.</span>
+        <span data-es>Una aplicación web para la <strong>automatización de la generación de reportes geotécnicos</strong>. El sistema permite a los usuarios estructurar, gestionar y consolidar información proveniente de múltiples fuentes en un documento estandarizado. Optimiza el flujo de trabajo mediante configuración de metadata, selección de secciones y vinculación de datos desde SharePoint — reduciendo la intervención manual y facilitando la gestión de versiones y entrega de documentos.</span>
+      </p>
+      <div class="roles">
+        <p class="role-label"><span data-en>My roles</span><span data-es>Mis roles</span></p>
+        <div class="role-tags">
+          <span class="role-tag">UX/UI Design</span>
+          <span class="role-tag"><span data-en>Prototyping</span><span data-es>Prototipado</span></span>
+          <span class="role-tag"><span data-en>Requirements gathering</span><span data-es>Levantamiento de requisitos</span></span>
+          <span class="role-tag"><span data-en>Client meetings</span><span data-es>Reuniones con cliente</span></span>
+          <span class="role-tag">Project Manager</span>
+          <span class="role-tag"><span data-en>Schedule management</span><span data-es>Manejo de cronograma</span></span>
+        </div>
+      </div>
+      <p class="note">
+        <span data-en>Currently in development phase — requirements were gathered directly with the end user through client meetings, and prototypes were validated before handoff to the development team.</span>
+        <span data-es>Actualmente en fase de desarrollo — los requisitos fueron levantados directamente con el usuario final mediante reuniones con el cliente, y los prototipos fueron validados antes de la entrega al equipo de desarrollo.</span>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- NEXT -->
+<div class="next">
+  <p class="next-l"><span data-en>Back to all work</span><span data-es>Volver a todos los proyectos</span></p>
+  <p class="next-t"><span data-en>See the portfolio →</span><span data-es>Ver el portafolio →</span></p>
+  <a href="index.html" class="btn">
+    <span data-en>View all projects</span><span data-es>Ver todos los proyectos</span>
+  </a>
+</div>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('es', lang === 'es');
+  document.getElementById('btn-en').style.fontWeight = lang === 'en' ? '500' : '300';
+  document.getElementById('btn-en').style.color = lang === 'en' ? 'var(--ink)' : 'var(--muted)';
+  document.getElementById('btn-es').style.fontWeight = lang === 'es' ? '500' : '300';
+  document.getElementById('btn-es').style.color = lang === 'es' ? 'var(--ink)' : 'var(--muted)';
+}
+</script>
+</body>
+</html>
