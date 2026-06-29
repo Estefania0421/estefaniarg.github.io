@@ -240,22 +240,12 @@ body.es span[data-es] { display: inline; }
 /* data tag + enter button */
 
 @media (max-width: 768px) {
-  /* Nav */
- nav { padding: 20px 24px; }
-.nav-center { 
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(245,244,242,0.97);
-  backdrop-filter: blur(12px);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  z-index: 99;
-}
-.nav-center.open { display: flex; }
-.nav-center a { font-size: 22px; color: var(--ink); }
+/* Nav */
+nav { padding: 20px 24px; }
+.nav-center { display: none; }
+.nav-right { gap: 12px; }
+.nav-cta { display: none; }
+
 .nav-burger {
   display: flex;
   flex-direction: column;
@@ -264,7 +254,7 @@ body.es span[data-es] { display: inline; }
   border: none;
   cursor: pointer;
   padding: 4px;
-  z-index: 200;
+  order: 2;
 }
 .nav-burger span {
   display: block;
@@ -273,8 +263,67 @@ body.es span[data-es] { display: inline; }
   background: var(--ink);
   transition: all .3s;
 }
-.nav-right { gap: 12px; }
-.nav-cta { display: none; }
+
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg);
+  z-index: 200;
+  padding: 72px 32px 48px;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+}
+.nav-mobile-menu.open { display: flex; }
+
+.nav-mobile-close {
+  position: absolute;
+  top: 24px; right: 24px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.nav-mobile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 24px;
+}
+
+.nav-mobile-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.nav-mobile-section a {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--faint);
+  transition: color .2s;
+}
+.nav-mobile-section a:last-child { border-bottom: none; }
+.nav-mobile-section a:hover { color: var(--accent); }
+
+.nav-mobile-other {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: .04em;
+  margin-top: 8px;
+}
   /* Hero */
   #hero {
     padding: 0 24px 64px;
@@ -332,6 +381,9 @@ body.es span[data-es] { display: inline; }
     text-align: center;
   }
 }
+  .nav-burger { display: none; }
+.nav-mobile-menu { display: none; }
+  
 </style>
 </head>
 <body>
@@ -342,14 +394,29 @@ body.es span[data-es] { display: inline; }
 <nav>
   <a href="#" class="nav-logo">Estefanía Reyes</a>
   <button class="nav-burger" id="nav-burger" onclick="toggleMenu()" aria-label="Menu">
-  <span></span><span></span><span></span>
-</button>
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <button class="nav-mobile-close" onclick="toggleMenu()">✕</button>
+    <div class="nav-mobile-section">
+      <p class="nav-mobile-label">Work</p>
+      <a href="applus_projects.html" onclick="toggleMenu()">Applus LATAM</a>
+      <a href="portfolio_case_study.html" onclick="toggleMenu()">This portfolio</a>
+      <a href="concert_plaza_case_study.html" onclick="toggleMenu()">Concert Plaza</a>
+      <a href="less_load_case_study.html" onclick="toggleMenu()">Less Load</a>
+      <a href="cloop_case_study.html" onclick="toggleMenu()">CLOOP</a>
+      <a href="elastic_ball_case_study.html" onclick="toggleMenu()">Elastic Ball</a>
+    </div>
+    <a href="other_skills.html" class="nav-mobile-other" onclick="toggleMenu()">Other skills</a>
+  </div>
+
   <ul class="nav-center">
     <li><a href="#work" data-en>Work</a><a href="#work" data-es>Proyectos</a></li>
     <li><a href="#about" data-en>About</a><a href="#about" data-es>Sobre mí</a></li>
     <li><a href="other_skills.html" data-en>Other skills</a><a href="other_skills.html" data-es>Otras habilidades</a></li>
     <li><a href="#contact" data-en>Contact</a><a href="#contact" data-es>Contacto</a></li>
-</ul>
+  </ul>
   <div class="nav-right">
     <span class="lang-sep" style="font-size:11px;letter-spacing:.05em">
       <button class="lang-toggle" id="btn-en" onclick="setLang('en')" style="font-weight:500;color:var(--ink)">EN</button>
@@ -360,7 +427,7 @@ body.es span[data-es] { display: inline; }
     <a href="#contact" class="nav-cta" data-es>Hablemos →</a>
   </div>
 </nav>
-
+  
 <!-- HERO -->
 <section id="hero">
   <div class="blob-wrap">
@@ -642,7 +709,7 @@ function setLang(lang) {
   document.getElementById("btn-es").style.color = lang === "es" ? "var(--ink)" : "var(--muted)";
 }
 function toggleMenu() {
-  document.querySelector('.nav-center').classList.toggle('open');
+  document.getElementById('nav-mobile-menu').classList.toggle('open');
 }
 
 </script>
