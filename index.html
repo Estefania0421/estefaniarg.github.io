@@ -38,6 +38,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 56
 .nav-cta:hover { background: var(--ink); color: var(--bg); }
 .nav-burger { display: none; }
 .nav-mobile-menu { display: none; }
+.nav-left { display: flex; align-items: center; gap: 12px; }
 
 /* BLOBS */
 .blob-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
@@ -392,10 +393,12 @@ nav { padding: 20px 24px; }
 
   
 <nav>
+ <div class="nav-left">
   <a href="#" class="nav-logo">Estefanía Reyes</a>
   <button class="nav-burger" id="nav-burger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
+</div>
 
   <div class="nav-mobile-menu" id="nav-mobile-menu">
     <button class="nav-mobile-close" onclick="toggleMenu()">✕</button>
