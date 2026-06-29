@@ -241,13 +241,40 @@ body.es span[data-es] { display: inline; }
 
 @media (max-width: 768px) {
   /* Nav */
-  nav {
-    padding: 20px 24px;
-  }
-  .nav-center {
-    display: none;
-  }
-
+ nav { padding: 20px 24px; }
+.nav-center { 
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(245,244,242,0.97);
+  backdrop-filter: blur(12px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  z-index: 99;
+}
+.nav-center.open { display: flex; }
+.nav-center a { font-size: 22px; color: var(--ink); }
+.nav-burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: all .3s;
+}
+.nav-right { gap: 12px; }
+.nav-cta { display: none; }
   /* Hero */
   #hero {
     padding: 0 24px 64px;
@@ -314,6 +341,9 @@ body.es span[data-es] { display: inline; }
   
 <nav>
   <a href="#" class="nav-logo">Estefanía Reyes</a>
+  <button class="nav-burger" id="nav-burger" onclick="toggleMenu()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
   <ul class="nav-center">
     <li><a href="#work" data-en>Work</a><a href="#work" data-es>Proyectos</a></li>
     <li><a href="#about" data-en>About</a><a href="#about" data-es>Sobre mí</a></li>
@@ -611,7 +641,9 @@ function setLang(lang) {
   document.getElementById("btn-es").style.fontWeight = lang === "es" ? "500" : "300";
   document.getElementById("btn-es").style.color = lang === "es" ? "var(--ink)" : "var(--muted)";
 }
-
+function toggleMenu() {
+  document.querySelector('.nav-center').classList.toggle('open');
+}
 
 </script>
 </body>
