@@ -243,7 +243,72 @@ body.es span[data-es] { display: inline; }
 }
 
 }
+@media (max-width: 768px) {
+  /* Nav */
+  nav {
+    padding: 20px 24px;
+  }
+  .nav-center {
+    display: none;
+  }
 
+  /* Hero */
+  #hero {
+    padding: 0 24px 64px;
+  }
+  .scroll-hint {
+    right: 24px;
+  }
+
+  /* Sections */
+  .div { margin: 0 24px; }
+  #work, #about, #contact { padding: 72px 24px; }
+
+  /* Grid de cards → 1 columna */
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card.feat {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+  }
+  .card.feat .card-thumb {
+    min-height: 200px;
+  }
+
+  /* Section header */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* About */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-photo {
+    aspect-ratio: 4/3;
+  }
+
+  /* Contact */
+  .contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .contact-link, .btn-p {
+    text-align: center;
+  }
+
+  /* Footer */
+  footer {
+    padding: 24px;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
 </style>
 </head>
 <body>
