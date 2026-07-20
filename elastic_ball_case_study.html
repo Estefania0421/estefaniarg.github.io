@@ -139,6 +139,46 @@ img{display:block}
 /* ─── TRANSITION ─── */
 .sec,.cs-hero{transition:opacity .2s ease}
 body.switching .sec,body.switching .cs-hero{opacity:.5}
+
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav { padding: 0 16px; gap: 8px; }
+  .nav-back, .nav-next { font-size: 11px; }
+  .nav-logo { font-size: 14px; }
+
+  /* MODE BAR */
+  .mode-bar { padding: 0 16px; height: auto; padding-top: 10px; padding-bottom: 10px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .mode-toggle { width: 100%; }
+  .mode-btn { flex: 1; justify-content: center; font-size: 11px; padding: 7px 10px; }
+
+  /* HERO */
+  .cs-hero { padding: 48px 20px 40px; }
+  .meta-row { flex-direction: column; border-radius: 12px; }
+  .mi { border-right: none; border-bottom: 1px solid var(--faint); }
+  .mi:last-child { border-bottom: none; }
+
+  /* EXEC CARD */
+  .exec-card { padding: 24px 20px; }
+  .exec-grid { grid-template-columns: 1fr; gap: 10px; }
+
+  /* GRIDS → 1 columna */
+  .g2, .g3, .g4 { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .exercise-grid { grid-template-columns: 1fr 1fr; }
+
+  /* imágenes inline */
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns:1fr 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* SECTIONS */
+  .sec { padding: 48px 20px; }
+  div[style*="padding:0 clamp"] { padding: 0 20px !important; }
+}
 </style>
 </head>
 <body>
