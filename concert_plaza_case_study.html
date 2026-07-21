@@ -75,6 +75,28 @@ img{display:block}
 .next-t{font-family:var(--serif);font-style:italic;font-size:clamp(28px,4vw,48px);color:white;margin-bottom:28px}
 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;font-family:var(--sans);font-size:13px;font-weight:500;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .2s}
 .btn:hover{transform:translateY(-2px)}
+
+@media (max-width: 768px){
+  /* NAV */
+  nav { padding: 0 16px; gap: 8px; }
+  .nav-back, .nav-next { font-size: 11px; }
+  .nav-logo { font-size: 14px; }
+
+  /* HERO / SECTIONS */
+  .cs-hero, .sec{padding:48px 20px}
+  .cs-title{font-size:34px}
+  .cs-lead{font-size:15px}
+
+  .meta-row{flex-direction:column}
+  .mi{border-right:none; border-bottom:1px solid var(--faint)}
+  .mi:last-child{border-bottom:none}
+
+  /* pantallas — de 3 columnas a 1 */
+  .screen-section{padding:32px 20px}
+  .screen-grid{grid-template-columns:1fr; gap:24px}
+
+  .next{padding:48px 20px}
+}
 </style>
 </head>
 <body>
