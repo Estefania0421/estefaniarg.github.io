@@ -254,6 +254,7 @@ body.switching .sec, body.switching .cs-hero { opacity:.5; }
   .cs-hero, .sec{padding:48px 20px}
   .cs-title{font-size:34px}
   .cs-lead{font-size:15px}
+  .c-slide img{height:260px}
 
   .meta-row{flex-direction:column}
   .mi{border-right:none; border-bottom:1px solid var(--faint)}
@@ -271,6 +272,20 @@ body.switching .sec, body.switching .cs-hero { opacity:.5; }
 
   .hmw{padding:24px 20px}
 }
+
+/* CAROUSEL */
+.c-wrap{position:relative;border-radius:16px;overflow:hidden;background:#1C1B19;user-select:none;width:100%;margin:28px 0}
+.c-track{display:flex;width:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
+.c-slide{flex:0 0 100%;min-width:100%;max-width:100%;overflow:hidden}
+.c-slide img{width:100%;height:480px;object-fit:cover;display:block;pointer-events:none}
+.c-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.5);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5;transition:background .2s;flex-shrink:0}
+.c-btn:hover{background:rgba(0,0,0,.8)}
+.c-prev{left:16px}
+.c-next{right:16px}
+.c-dots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:5}
+.c-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;transition:all .2s;padding:0}
+.c-dot.on{background:#fff;width:20px;border-radius:3px}
+.c-count{position:absolute;top:16px;right:16px;font-size:11px;color:rgba(255,255,255,.8);background:rgba(0,0,0,.45);padding:4px 10px;border-radius:100px;z-index:5;font-family:var(--sans)}
 </style>
 </head>
 <body>
@@ -468,24 +483,22 @@ body.switching .sec, body.switching .cs-hero { opacity:.5; }
     <div class="ps"><div class="ps-num">05</div><div class="ps-title"><span data-en>Final render</span><span data-es>Render final</span></div><div class="ps-desc"><span data-en>KeyShot — photorealistic presentation of the chosen design</span><span data-es>KeyShot — presentación fotorrealista del diseño elegido</span></div></div>
   </div>
   
-  <div class="academic-only">
-    <div class="g3" style="margin-top:0">
-      <img style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3;" src="img/cloop_02_design_alternative_1.jpg" alt="Design alternative 1">
-      <img style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3;" src="img/cloop_03_design_alternative_2.jpg" alt="Design alternative 2">
-      <img style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3;" src="img/cloop_04_design_alternative_3.jpg" alt="Design alternative 3">
+<div class="c-wrap">
+    <div class="c-track" id="track-cloop-process">
+      <div class="c-slide"><img src="img/cloop_02_design_alternative_1.jpg" alt="Design alternative 1"></div>
+      <div class="c-slide"><img src="img/cloop_03_design_alternative_2.jpg" alt="Design alternative 2"></div>
+      <div class="c-slide"><img src="img/cloop_04_design_alternative_3.jpg" alt="Design alternative 3"></div>
+      <div class="c-slide"><img src="img/cloop_05_clay_model_physical_exploration_of_chose.jpg" alt="Clay model"></div>
+      <div class="c-slide"><img src="img/cloop_06_physical_prototype_dispensing_mechanism_.jpg" alt="Physical prototype"></div>
+      <div class="c-slide"><img src="img/cloop_07_3d_printed_pulpi_refined_iteration.jpg" alt="3D printed PULPI"></div>
+      <div class="c-slide"><img src="img/cloop_08_exploded_view_internal_components.jpg" alt="Exploded view"></div>
     </div>
-    <p class="cap"><span data-en>The three design alternatives evaluated — the middle direction was selected and refined through clay modeling.</span><span data-es>Las tres alternativas de diseño evaluadas — la dirección central fue seleccionada y refinada mediante modelado en arcilla.</span></p>
+    <button class="c-btn c-prev" onclick="moveCarousel('cloop-process',-1,4500)">‹</button>
+    <button class="c-btn c-next" onclick="moveCarousel('cloop-process',1,4500)">›</button>
+    <div class="c-dots" id="dots-cloop-process"></div>
+    <div class="c-count" id="count-cloop-process">1 / 7</div>
   </div>
-  <div class="g2" style="margin:28px 0">
-    <img style="width:100%;border-radius:12px;object-fit:cover;" src="img/cloop_05_clay_model_physical_exploration_of_chose.jpg" alt="Clay model — physical exploration of chosen direction">
-    <img style="width:100%;border-radius:12px;object-fit:cover;" src="img/cloop_06_physical_prototype_dispensing_mechanism_.jpg" alt="Physical prototype — dispensing mechanism test">
-  </div>
-  <p class="cap"><span data-en>Clay exploration and mechanism validation</span><span data-es>Exploración en arcilla y validación de mecanismo</span></p>
-  <div class="g2" style="margin:24px 0">
-    <img style="width:100%;border-radius:12px;object-fit:cover;" src="img/cloop_07_3d_printed_pulpi_refined_iteration.jpg" alt="3D printed PULPI — refined iteration">
-    <img style="width:100%;border-radius:12px;object-fit:cover;" src="img/cloop_08_exploded_view_internal_components.jpg" alt="Exploded view — internal components">
-  </div>
-  <p class="cap"><span data-en>3D printed prototype and exploded view — internal components</span><span data-es>Prototipo impreso en 3D y vista explotada — componentes internos</span></p>
+  <p class="cap"><span data-en>From design alternatives to clay modeling to 3D printed prototype — the full physical iteration process</span><span data-es>De las alternativas de diseño al modelado en arcilla y el prototipo impreso en 3D — todo el proceso de iteración física</span></p>
   <div class="quote">
     <p><span data-en><strong>Key insight from prototyping:</strong> The silicone texture of PULPI emerged from the third clay iteration — early models were too rigid and failed to convey the playful tactile quality that drives a child's desire to press it repeatedly.</span><span data-es><strong>Aprendizaje clave del prototipado:</strong> La textura de silicona de PULPI emergió en la tercera iteración de arcilla — los modelos anteriores eran demasiado rígidos y no transmitían la cualidad táctil lúdica que impulsa el deseo del niño de presionarlo repetidamente.</span></p>
   </div>
