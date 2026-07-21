@@ -568,6 +568,44 @@ body.switching .sec, body.switching .cs-hero { opacity:.5; }
 <!-- ─── SCRIPT ─── -->
 <script>
 
+const cur = {};
+const timers = {};
+
+function initCarousel(id, n, autoplayMs) {
+  cur[id] = 0;
+  const dots = document.getElementById('dots-' + id);
+  for (let i = 0; i < n; i++) {
+    const b = document.createElement('button');
+    b.className = 'c-dot' + (i===0?' on':'');
+    b.onclick = () => { goCarousel(id, i); resetAutoplay(id, autoplayMs); };
+    dots.appendChild(b);
+  }
+  if (autoplayMs) startAutoplay(id, autoplayMs);
+}
+
+function goCarousel(id, i) {
+  const slides = document.querySelectorAll('#track-' + id + ' .c-slide');
+  cur[id] = (i + slides.length) % slides.length;
+  document.getElementById('track-' + id).style.transform = `translateX(-${cur[id]*100}%)`;
+  document.querySelectorAll('#dots-' + id + ' .c-dot').forEach((d,j) => d.classList.toggle('on', j===cur[id]));
+  document.getElementById('count-' + id).textContent = `${cur[id]+1} / ${slides.length}`;
+}
+
+function moveCarousel(id, dir, autoplayMs) {
+  goCarousel(id, cur[id]+dir);
+  if (autoplayMs) resetAutoplay(id, autoplayMs);
+}
+
+function startAutoplay(id, ms) {
+  timers[id] = setInterval(() => goCarousel(id, cur[id]+1), ms);
+}
+function resetAutoplay(id, ms) {
+  clearInterval(timers[id]);
+  startAutoplay(id, ms);
+}
+
+initCarousel('cloop-process', 7, 4500);
+
 function setLang(lang) {
   document.body.classList.toggle('es', lang === 'es');
   document.getElementById('btn-en').style.fontWeight = lang === 'en' ? '500' : '300';
