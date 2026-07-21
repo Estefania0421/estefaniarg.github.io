@@ -169,23 +169,6 @@ nav{position:sticky;top:0;background:rgba(245,244,242,.92);backdrop-filter:blur(
 </nav>
 
 
-<!-- MODE BAR -->
-<div style="padding:0 clamp(28px,5vw,80px);height:52px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--faint);background:var(--white);position:sticky;top:56px;z-index:90">
-  <p style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">
-    <span data-en>Viewing mode</span><span data-es>Modo de vista</span>
-  </p>
-  <div style="display:flex;background:var(--faint);border-radius:100px;padding:3px">
-    <button id="btn-exec" onclick="setMode('exec')" aria-pressed="true" style="padding:7px 20px;border-radius:100px;border:none;background:var(--ink);color:white;font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(28,27,25,.2)">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="2" rx="1" fill="currentColor"/><rect x="1" y="6" width="8" height="2" rx="1" fill="currentColor"/><rect x="1" y="10" width="10" height="2" rx="1" fill="currentColor"/></svg>
-      <span data-en>Executive summary</span><span data-es>Resumen ejecutivo</span>
-    </button>
-    <button id="btn-acad" onclick="setMode('acad')" aria-pressed="false" style="padding:7px 20px;border-radius:100px;border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 4.5V5.5L7 9L1 5.5V4.5L7 1Z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 6.5V10.5L7 13L11 10.5V6.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
-      <span data-en>Full case study</span><span data-es>Case study completo</span>
-    </button>
-  </div>
-</div>
-
 <!-- HERO -->
 <div class="cs-hero">
   <div class="hero-blob"></div>
