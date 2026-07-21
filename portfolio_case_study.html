@@ -111,10 +111,6 @@ nav{position:sticky;top:0;background:rgba(245,244,242,.92);backdrop-filter:blur(
 .btn:hover{transform:translateY(-2px);background:#A83D28}
 
 /* ─── MODE VISIBILITY ─── */
-body:not(.academic-mode) .academic-only{display:none !important}
-body.academic-mode .exec-only{display:none !important}
-.sec,.cs-hero{transition:opacity .2s ease}
-body.switching .sec,body.switching .cs-hero{opacity:.5}
 
 @media (max-width: 768px){
   /* NAV */
@@ -122,23 +118,6 @@ body.switching .sec,body.switching .cs-hero{opacity:.5}
   .nav-back, .nav-next { font-size: 11px; }
   .nav-logo { font-size: 14px; }
 
-  /* MODE BAR — sin clase, targeteado por su style inline */
-  div[style*="position:sticky;top:56px"]{
-    height:auto !important;
-    padding:10px 16px !important;
-    flex-direction:column !important;
-    align-items:flex-start !important;
-    gap:8px !important;
-  }
-  div[style*="position:sticky;top:56px"] > div{
-    width:100% !important;
-  }
-  #btn-exec, #btn-acad{
-    flex:1 !important;
-    justify-content:center !important;
-    font-size:11px !important;
-    padding:7px 10px !important;
-  }
 
   /* HERO / SECTIONS */
   .cs-hero, .sec{padding:48px 20px}
@@ -244,7 +223,7 @@ body.switching .sec,body.switching .cs-hero{opacity:.5}
 
 
 <!-- EXECUTIVE SUMMARY -->
-<div class="sec exec-only">
+<div class="sec">
   <div style="background:var(--white);border:1px solid var(--faint);border-radius:20px;padding:40px 44px;position:relative;overflow:hidden">
     <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#E8A090)"></div>
 
@@ -314,7 +293,6 @@ body.switching .sec,body.switching .cs-hero{opacity:.5}
 </div>
 
 <!-- 01 WHY -->
-<div class="academic-only">
 <div class="sec">
   <p class="phase"><span data-en>The decision</span><span data-es>La decisión</span></p>
   <h2 class="stitle"><span data-en>Why coding <em>and not a platform.</em></span><span data-es>Por qué código, <em>y no una plataforma.</em></span></h2>
@@ -659,7 +637,6 @@ body.switching .sec,body.switching .cs-hero{opacity:.5}
   </div>
 </div>
 
-</div>
 
 <!-- NEXT -->
 <div class="next">
@@ -671,24 +648,6 @@ body.switching .sec,body.switching .cs-hero{opacity:.5}
 </div>
 
 <script>
-function setMode(mode) {
-  const body = document.body;
-  const bE = document.getElementById('btn-exec');
-  const bA = document.getElementById('btn-acad');
-  body.classList.add('switching');
-  setTimeout(() => body.classList.remove('switching'), 220);
-  if (mode === 'acad') {
-    body.classList.add('academic-mode');
-    bA.style.background = 'var(--ink)'; bA.style.color = 'white'; bA.setAttribute('aria-pressed','true');
-    bE.style.background = 'transparent'; bE.style.color = 'var(--muted)'; bE.setAttribute('aria-pressed','false');
-  } else {
-    body.classList.remove('academic-mode');
-    bE.style.background = 'var(--ink)'; bE.style.color = 'white'; bE.setAttribute('aria-pressed','true');
-    bA.style.background = 'transparent'; bA.style.color = 'var(--muted)'; bA.setAttribute('aria-pressed','false');
-  }
-  window.scrollTo({top:110, behavior:'smooth'});
-}
-
 function setLang(lang) {
   document.body.classList.toggle('es', lang === 'es');
   document.getElementById('btn-en').style.fontWeight = lang === 'en' ? '500' : '300';
