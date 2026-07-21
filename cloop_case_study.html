@@ -243,36 +243,13 @@ body.switching .sec, body.switching .cs-hero { opacity:.5; }
 
 /* ─── MOBILE (≤768px) ─── */
 @media (max-width: 768px){
-  nav{
-    padding:0 16px;
-    height:auto;
-    min-height:56px;
-    flex-wrap:wrap;
-    row-gap:8px;
-  }
-  .nav-back{order:1; font-size:12px}
-  .nav-logo{order:2; font-size:15px}
-  nav > div{order:3; width:100%; justify-content:center; gap:14px}
-  .nav-next{font-size:12px}
+  nav { padding: 0 16px; gap: 8px; }
+  .nav-back, .nav-next { font-size: 11px; }
+  .nav-logo { font-size: 14px; }
 
-  .mode-bar{
-    position:static;
-    flex-direction:column;
-    align-items:stretch;
-    gap:8px;
-    padding:12px 16px;
-    height:auto;
-  }
-  .mode-toggle{width:100%}
-  .mode-btn{
-    flex:1;
-    justify-content:center;
-    padding:9px 8px;
-    font-size:11px;
-    white-space:normal;
-    text-align:center;
-  }
-  .mode-btn svg{display:none}
+  .mode-bar { padding: 0 16px; height: auto; padding-top: 10px; padding-bottom: 10px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .mode-toggle { width: 100%; }
+  .mode-btn { flex: 1; justify-content: center; font-size: 11px; padding: 7px 10px; }
 
   .cs-hero, .sec{padding:48px 20px}
   .cs-title{font-size:34px}
