@@ -69,6 +69,33 @@ nav{position:sticky;top:0;background:rgba(245,244,242,.92);backdrop-filter:blur(
 .next-t{font-family:var(--serif);font-style:italic;font-size:clamp(28px,4vw,48px);color:white;margin-bottom:28px}
 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;font-family:var(--sans);font-size:13px;font-weight:500;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .2s}
 .btn:hover{transform:translateY(-2px)}
+
+@media (max-width: 768px){
+  /* NAV */
+  nav { padding: 0 16px; gap: 8px; }
+  .nav-back { font-size: 11px; }
+  .nav-logo { font-size: 14px; }
+
+  /* HERO */
+  .hero{padding:48px 20px 40px}
+  .hero-title{font-size:34px}
+  .hero-lead{font-size:15px}
+
+  .meta-row{flex-direction:column}
+  .mi{border-right:none; border-bottom:1px solid var(--faint)}
+  .mi:last-child{border-bottom:none}
+
+  /* PROJECTS — de 1fr 2fr (número + contenido) a 1 columna */
+  .projects{padding:0 20px}
+  .project{
+    grid-template-columns:1fr;
+    gap:16px;
+    padding:40px 0;
+  }
+  .proj-number{font-size:44px; margin-bottom:8px}
+
+  .next{padding:48px 20px}
+}
 </style>
 </head>
 <body>
