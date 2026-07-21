@@ -115,6 +115,60 @@ body:not(.academic-mode) .academic-only{display:none !important}
 body.academic-mode .exec-only{display:none !important}
 .sec,.cs-hero{transition:opacity .2s ease}
 body.switching .sec,body.switching .cs-hero{opacity:.5}
+
+@media (max-width: 768px){
+  /* NAV */
+  nav { padding: 0 16px; gap: 8px; }
+  .nav-back, .nav-next { font-size: 11px; }
+  .nav-logo { font-size: 14px; }
+
+  /* MODE BAR — sin clase, targeteado por su style inline */
+  div[style*="position:sticky;top:56px"]{
+    height:auto !important;
+    padding:10px 16px !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:8px !important;
+  }
+  div[style*="position:sticky;top:56px"] > div{
+    width:100% !important;
+  }
+  #btn-exec, #btn-acad{
+    flex:1 !important;
+    justify-content:center !important;
+    font-size:11px !important;
+    padding:7px 10px !important;
+  }
+
+  /* HERO / SECTIONS */
+  .cs-hero, .sec{padding:48px 20px}
+  .cs-title{font-size:34px}
+  .cs-lead{font-size:15px}
+
+  .meta-row{flex-direction:column}
+  .mi{border-right:none; border-bottom:1px solid var(--faint)}
+  .mi:last-child{border-bottom:none}
+
+  /* exec-card — sin clase, targeteado por su style inline */
+  div[style*="padding:40px 44px"]{
+    padding:24px 20px !important;
+  }
+
+  /* GRIDS con clase */
+  .stack-grid{grid-template-columns:1fr}
+  .learnings{grid-template-columns:1fr}
+
+  /* grids inline: stats de 3 col (línea ~212) y certificados de 2 col (línea ~524) */
+  div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns: 1fr !important;
+  }
+
+  /* filas de roadmap (auto 1fr auto) — se mantienen en 3 columnas pero más compactas */
+  div[style*="grid-template-columns:auto 1fr auto"]{
+    padding:14px 16px !important;
+    gap:12px !important;
+  }
+}
 </style>
 </head>
 <body>
