@@ -458,6 +458,10 @@ nav { padding: 20px 24px; }
  #work.gallery .card{flex-direction:column;align-items:flex-start;gap:16px;scroll-snap-align:center}
  #work.gallery .card-thumb{height:auto;width:68vw;padding:14px;border-width:7px}
  #work.gallery .card-thumb::before{display:none}
+ #work.gallery .card-thumb{aspect-ratio:auto!important}
+ #work.gallery .card-thumb img{height:auto!important;object-fit:contain!important;max-height:56vw!important}
+ #work.gallery .card-thumb:has(img[src*="less_load"]) img{aspect-ratio:4/3;object-fit:cover!important;object-position:center 45%}
+ #work.gallery .grid{align-items:flex-start}
  #work.gallery .card-body{width:68vw}
 }
 @media (prefers-reduced-motion:reduce){#work.gallery .card-thumb{transition:none}}
@@ -845,10 +849,17 @@ let cur='',x=null,target=null,dir=1,dist=0,last=0,hoverCard=null,arrivedAt=0;
 const set=u=>{if(u!==cur){cur=u;wk.style.backgroundImage='url('+u+')'}};set(W[1]);
 const half=()=>wk.offsetWidth/2;
 function frameCenter(card){const b=card.querySelector('.card-thumb').getBoundingClientRect(),s=stk.getBoundingClientRect();return b.left+b.width/2-s.left}
-stk.addEventListener('mousemove',e=>{const s=stk.getBoundingClientRect();target=e.clientX-s.left});
+let mx=null;
+stk.addEventListener('mousemove',e=>{const s=stk.getBoundingClientRect();target=e.clientX-s.left;mx=target});
+stk.addEventListener('mouseleave',()=>{mx=null});
+function edgeScroll(){if(mx===null)return;const Wd=stk.clientWidth,Z=Math.min(160,Wd*0.12);let v=0;
+ if(mx>Wd-Z)v=(mx-(Wd-Z))/Z;else if(mx<Z)v=-(Z-mx)/Z;if(!v)return;
+ const r=sec.getBoundingClientRect();if(r.top>1||r.bottom<window.innerHeight-1)return;
+ const minY=sec.offsetTop,maxY=sec.offsetTop+sec.offsetHeight-window.innerHeight;
+ const ny=Math.max(minY,Math.min(maxY,window.scrollY+v*16));if(Math.abs(ny-window.scrollY)>=1)window.scrollTo(0,ny)}
 sec.querySelectorAll('.card').forEach(c=>{c.addEventListener('mouseenter',()=>hoverCard=c);c.addEventListener('mouseleave',()=>{if(hoverCard===c)hoverCard=null})});
 function tick(t){const dt=Math.min(50,t-(last||t));last=t;
- if(window.innerWidth>820){const Wd=stk.clientWidth;
+ if(window.innerWidth>820){edgeScroll();const Wd=stk.clientWidth;
   if(x===null){x=Wd*0.3;target=x}
   const goal=Math.max(half(),Math.min(Wd-half(),hoverCard?frameCenter(hoverCard):target));
   const d=goal-x;
