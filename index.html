@@ -839,7 +839,7 @@ window.addEventListener('scroll',move,{passive:true});window.addEventListener('r
 </script>
 <script>
 {const wk=document.getElementById('walker'),sec=document.getElementById('work');
-if(wk&&sec){const stk=sec.querySelector('.wall-sticky'),P='img/walker/',W=[1,2,3,4,5,6].map(i=>P+'walk-'+i+'.png'),TURN=P+'turn.png',BACK=P+'back.png';
+if(wk&&sec){const stk=sec.querySelector('.wall-sticky'),P='img/walker/walker/',W=[1,2,3,4,5,6].map(i=>P+'walk-'+i+'.png'),TURN=P+'turn.png',BACK=P+'back.png';
 [...W,TURN,BACK].forEach(u=>{const i=new Image();i.src=u});
 let cur='',x=null,target=null,dir=1,dist=0,last=0,hoverCard=null,arrivedAt=0;
 const set=u=>{if(u!==cur){cur=u;wk.style.backgroundImage='url('+u+')'}};set(W[1]);
